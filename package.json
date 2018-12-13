@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build": "npx rimraf src/index.js && npx create-index --ignoreUnsafe src && yarn transpile",
+    "transpile": "npx babel src --out-dir dist"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/node": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "create-index": "^2.3.0",
+    "rimraf": "^2.6.2"
+  }
+}
