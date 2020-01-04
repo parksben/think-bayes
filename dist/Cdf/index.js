@@ -13,6 +13,8 @@ var _math = _interopRequireDefault(require("../math"));
 
 var _utils = require("../utils");
 
+var _bisect = require("../algorithm/bisect");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -149,7 +151,7 @@ function (_DictWrapper) {
     key: "prob",
     value: function prob(x) {
       if (!x || x < this.xs[0]) return 0.0;
-      var index = (0, _utils.bisect)(this.xs, x);
+      var index = (0, _bisect.bisect)(this.xs, x);
 
       var p = this.ps[_math.default.sub(index, 1)];
 
@@ -164,10 +166,10 @@ function (_DictWrapper) {
   }, {
     key: "value",
     value: function value(p) {
-      if (!p || p < 0 || p > 1) throw new _utils.ValueError('Probability p must be in range [0, 1]');
+      if (!p || p < 0 || p > 1) throw new RangeError('Probability p must be in range [0, 1]');
       if (p === 0) return this.xs[0];
       if (p === 1) return this.xs[_math.default.sub(this.xs.length, 1)];
-      var index = (0, _utils.bisect)(this.ps, p);
+      var index = (0, _bisect.bisect)(this.ps, p);
 
       if (p === this.ps[_math.default.sub(index, 1)]) {
         return this.xs[_math.default.sub(index, 1)];

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.div = exports.mult = exports.sub = exports.add = void 0;
+exports.default = exports.factorial = exports.div = exports.mult = exports.sub = exports.add = void 0;
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -90,13 +90,27 @@ var div = function div(a, b) {
       r = _items4.r;
 
   return l / r;
-};
+}; // Factorial: n!
+
 
 exports.div = div;
+
+var factorial = function factorial(n) {
+  var res = 1;
+
+  for (var i = 0; i < n; i++) {
+    res *= i + 1;
+  }
+
+  return res;
+};
+
+exports.factorial = factorial;
 var _default = {
   add: add,
   sub: sub,
   mult: mult,
-  div: div
+  div: div,
+  factorial: factorial
 };
 exports.default = _default;

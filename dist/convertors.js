@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.makeCdfFromPmf = exports.makeCdfFromList = exports.makeCdfFromHist = exports.makeCdfFromDict = exports.makeCdfFromItems = exports.makeUniformPmf = exports.makeMixture = exports.makePmfFromCdf = exports.makePmfFromHist = exports.makePmfFromItems = exports.makePmfFromDict = exports.makePmfFromList = exports.makeHistFromDict = exports.makeHistFromList = exports.makeJoint = void 0;
+exports.makeSuiteFromCdf = exports.makeSuiteFromHist = exports.makeSuiteFromList = exports.makeSuiteFromDict = exports.makeCdfFromPmf = exports.makeCdfFromList = exports.makeCdfFromHist = exports.makeCdfFromDict = exports.makeCdfFromItems = exports.makeUniformPmf = exports.makeMixture = exports.makePmfFromCdf = exports.makePmfFromHist = exports.makePmfFromItems = exports.makePmfFromDict = exports.makePmfFromList = exports.makeHistFromDict = exports.makeHistFromList = exports.makeJoint = void 0;
 
 var _Cdf = _interopRequireDefault(require("./Cdf"));
 
@@ -13,7 +13,9 @@ var _Hist = _interopRequireDefault(require("./Hist"));
 
 var _Pmf = _interopRequireDefault(require("./Pmf"));
 
-var _utils = require("./utils");
+var _Suite = _interopRequireDefault(require("./Suite"));
+
+var _num = require("./algorithm/num");
 
 var _math = _interopRequireDefault(require("./math"));
 
@@ -331,7 +333,7 @@ var makeUniformPmf = function makeUniformPmf(low, high, n) {
   var _iteratorError7 = undefined;
 
   try {
-    for (var _iterator7 = (0, _utils.linspace)(low, high, n)[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+    for (var _iterator7 = (0, _num.linspace)(low, high, n)[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
       var x = _step7.value;
       pmf.set(x, 1);
     }
@@ -465,5 +467,91 @@ exports.makeCdfFromList = makeCdfFromList;
 var makeCdfFromPmf = function makeCdfFromPmf(pmf, name) {
   return makeCdfFromItems(pmf.items(), name || pmf.name);
 };
+/**
+ * Makes a suite from a map from values to probabilities.
+ * @param {object/map} d dictionary that maps values to probabilities
+ * @param {string} name string name for this suite
+ * @returns Suite object
+ */
+
 
 exports.makeCdfFromPmf = makeCdfFromPmf;
+
+var makeSuiteFromDict = function makeSuiteFromDict(d, name) {
+  var suite = new _Suite.default(null, name);
+  suite.setDict(d);
+  suite.normalize();
+  return suite;
+};
+/**
+ * Makes a suite from an unsorted sequence of values.
+ * @param {array} t sequence of numbers
+ * @param {string} name string name for this suite
+ */
+
+
+exports.makeSuiteFromDict = makeSuiteFromDict;
+
+var makeSuiteFromList = function makeSuiteFromList(t, name) {
+  var hist = makeHistFromList(t);
+  var d = hist.getDict();
+  return makeSuiteFromDict(d, name);
+};
+/**
+ * Makes a normalized suite from a Hist object.
+ * @param {hist} hist Hist object
+ * @param {string} name string name
+ */
+
+
+exports.makeSuiteFromList = makeSuiteFromList;
+
+var makeSuiteFromHist = function makeSuiteFromHist(hist, name) {
+  var d = new Map(hist.getDict());
+  return makeSuiteFromDict(d, name || hist.name);
+};
+/**
+ * Makes a normalized Suite from a Cdf object.
+ * @param {cdf} cdf Cdf object
+ * @param {string} name string name for the new Suite
+ * @returns Suite object
+ */
+
+
+exports.makeSuiteFromHist = makeSuiteFromHist;
+
+var makeSuiteFromCdf = function makeSuiteFromCdf(cdf, name) {
+  var suite = new _Suite.default(null, name || cdf.name);
+  var prev = 0;
+  var _iteratorNormalCompletion9 = true;
+  var _didIteratorError9 = false;
+  var _iteratorError9 = undefined;
+
+  try {
+    for (var _iterator9 = cdf.items()[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+      var _step9$value = _slicedToArray(_step9.value, 2),
+          val = _step9$value[0],
+          prob = _step9$value[1];
+
+      suite.incr(val, _math.default.sub(prob, prev));
+      prev = prob;
+    }
+  } catch (err) {
+    _didIteratorError9 = true;
+    _iteratorError9 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion9 && _iterator9.return != null) {
+        _iterator9.return();
+      }
+    } finally {
+      if (_didIteratorError9) {
+        throw _iteratorError9;
+      }
+    }
+  }
+
+  return suite;
+};
+
+exports.makeSuiteFromCdf = makeSuiteFromCdf;

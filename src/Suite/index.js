@@ -3,7 +3,8 @@
  */
 
 import Pmf from '../Pmf';
-import { UnimplementedMethodException, odds, probability } from '../utils';
+import { UnimplementedMethodException } from '../utils';
+import { odds, probability } from '../helpers';
 
 export default class Suite extends Pmf {
   /**

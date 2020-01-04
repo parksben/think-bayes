@@ -9,6 +9,8 @@ var _Pmf2 = _interopRequireDefault(require("../Pmf"));
 
 var _utils = require("../utils");
 
+var _helpers = require("../helpers");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -245,7 +247,7 @@ function (_Pmf) {
               prob = _step5$value[1];
 
           if (prob) {
-            this.set(hypo, (0, _utils.odds)(prob));
+            this.set(hypo, (0, _helpers.odds)(prob));
           } else {
             this.remove(hypo);
           }
@@ -282,7 +284,7 @@ function (_Pmf) {
               hypo = _step6$value[0],
               _odds = _step6$value[1];
 
-          this.set(hypo, (0, _utils.probability)(_odds));
+          this.set(hypo, (0, _helpers.probability)(_odds));
         }
       } catch (err) {
         _didIteratorError6 = true;

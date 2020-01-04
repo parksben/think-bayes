@@ -4,7 +4,7 @@
  * @param {array} ys sorted list
  */
 
-import { bisect } from '../utils';
+import { bisect } from '../algorithm/bisect';
 import math from '../math';
 
 export default class Interpolater {

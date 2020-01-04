@@ -8,7 +8,8 @@
 import DictWrapper from '../DictWrapper';
 import { makePmfFromCdf } from '../convertors';
 import math from '../math';
-import { bisect, ValueError, UnimplementedMethodException } from '../utils';
+import { UnimplementedMethodException } from '../utils';
+import { bisect } from '../algorithm/bisect';
 
 export class Cdf extends DictWrapper {
   constructor(xs, ps, name) {
@@ -96,7 +97,7 @@ export class Cdf extends DictWrapper {
    */
   value(p) {
     if (!p || p < 0 || p > 1)
-      throw new ValueError('Probability p must be in range [0, 1]');
+      throw new RangeError('Probability p must be in range [0, 1]');
     if (p === 0) return this.xs[0];
     if (p === 1) return this.xs[math.sub(this.xs.length, 1)];
 

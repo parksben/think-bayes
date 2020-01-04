@@ -2,7 +2,8 @@ import Cdf from './Cdf';
 import Joint from './Joint';
 import Hist from './Hist';
 import Pmf from './Pmf';
-import { linspace } from './utils';
+import Suite from './Suite';
+import { linspace } from './algorithm/num';
 import math from './math';
 
 /**
@@ -204,3 +205,55 @@ export const makeCdfFromList = (seq, name) => {
  */
 export const makeCdfFromPmf = (pmf, name) =>
   makeCdfFromItems(pmf.items(), name || pmf.name);
+
+/**
+ * Makes a suite from a map from values to probabilities.
+ * @param {object/map} d dictionary that maps values to probabilities
+ * @param {string} name string name for this suite
+ * @returns Suite object
+ */
+export const makeSuiteFromDict = (d, name) => {
+  const suite = new Suite(null, name);
+  suite.setDict(d);
+  suite.normalize();
+  return suite;
+};
+
+/**
+ * Makes a suite from an unsorted sequence of values.
+ * @param {array} t sequence of numbers
+ * @param {string} name string name for this suite
+ */
+export const makeSuiteFromList = (t, name) => {
+  const hist = makeHistFromList(t);
+  const d = hist.getDict();
+  return makeSuiteFromDict(d, name);
+};
+
+/**
+ * Makes a normalized suite from a Hist object.
+ * @param {hist} hist Hist object
+ * @param {string} name string name
+ */
+export const makeSuiteFromHist = (hist, name) => {
+  const d = new Map(hist.getDict());
+  return makeSuiteFromDict(d, name || hist.name);
+};
+
+/**
+ * Makes a normalized Suite from a Cdf object.
+ * @param {cdf} cdf Cdf object
+ * @param {string} name string name for the new Suite
+ * @returns Suite object
+ */
+export const makeSuiteFromCdf = (cdf, name) => {
+  const suite = new Suite(null, name || cdf.name);
+
+  let prev = 0;
+  for (let [val, prob] of cdf.items()) {
+    suite.incr(val, math.sub(prob, prev));
+    prev = prob;
+  }
+
+  return suite;
+};

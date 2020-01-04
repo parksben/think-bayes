@@ -447,7 +447,7 @@ function () {
         return o instanceof Map;
       };
 
-      if (!isObject(d)) throw new _utils.ValueError('Value of the data set should be one map or object.');
+      if (!isObject(d)) throw new TypeError('Value of the data set should be one map or object.');
       this.d = isObject(d) && !isMap(d) ? new Map(Object.entries(d)) : d;
     }
     /**
@@ -476,10 +476,8 @@ function () {
   }, {
     key: "print",
     value: function print() {
-      var header = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ['Value', 'Probability'];
       (0, _utils.printTable)({
-        rows: this.render(),
-        header: header
+        rows: this.render()
       });
     }
   }, {

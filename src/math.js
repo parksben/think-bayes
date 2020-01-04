@@ -35,9 +35,19 @@ export const div = (a, b) => {
   return l / r;
 };
 
+// Factorial: n!
+export const factorial = n => {
+  let res = 1;
+  for (let i = 0; i < n; i++) {
+    res *= i + 1;
+  }
+  return res;
+};
+
 export default {
   add,
   sub,
   mult,
   div,
+  factorial,
 };

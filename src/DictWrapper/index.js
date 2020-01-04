@@ -242,9 +242,7 @@ export default class DictWrapper {
     const isMap = o => o instanceof Map;
 
     if (!isObject(d))
-      throw new ValueError(
-        'Value of the data set should be one map or object.'
-      );
+      throw new TypeError('Value of the data set should be one map or object.');
 
     this.d = isObject(d) && !isMap(d) ? new Map(Object.entries(d)) : d;
   }
@@ -261,7 +259,7 @@ export default class DictWrapper {
    * Prints the values and freqs/probs in ascending order.
    * @param indent
    */
-  print(header = ['Value', 'Probability']) {
-    printTable({ rows: this.render(), header });
+  print() {
+    printTable({ rows: this.render() });
   }
 }

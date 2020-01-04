@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _utils = require("../utils");
+var _bisect2 = require("../algorithm/bisect");
 
 var _math = _interopRequireDefault(require("../math"));
 
@@ -59,7 +59,7 @@ function () {
     value: function _bisect(x, xs, ys) {
       if (x <= xs[0]) return ys[0];
       if (x >= xs[_math.default.sub(xs.length, 1)]) return ys[_math.default.sub(ys.length, 1)];
-      var i = (0, _utils.bisect)(xs, x); // frac = (1.0 * (x - xs[i - 1])) / (xs[i] - xs[i - 1])
+      var i = (0, _bisect2.bisect)(xs, x); // frac = (1.0 * (x - xs[i - 1])) / (xs[i] - xs[i - 1])
 
       var frac = _math.default.div(1.0 * _math.default.sub(x, xs[_math.default.sub(i, 1)]), _math.default.sub(xs[i], xs[_math.default.sub(i, 1)])); // y = ys[i - 1] + frac * 1.0 * (ys[i] - ys[i - 1])
 
