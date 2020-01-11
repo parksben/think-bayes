@@ -1,5 +1,5 @@
 # think-bayes
 
-A thinkBayes library for javascript environment.
+A Think-Bayes library for ES and node.js environment.
 
 In progress...
