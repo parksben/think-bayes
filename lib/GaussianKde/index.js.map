@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/GaussianKde/index.js"],"names":["GaussianKde"],"mappings":";;;;;;;;;AAAA;;;IAIqBA,W","sourcesContent":["/**\n * TODO: implemente this class.\n */\n\nexport default class GaussianKde {}\n"],"file":"index.js"}

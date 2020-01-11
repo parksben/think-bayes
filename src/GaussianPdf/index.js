@@ -3,7 +3,7 @@
  */
 
 import Pdf from '../Pdf';
-import EvalGaussianPdf from '../EvalGaussianPdf';
+// import EvalGaussianPdf from '../EvalGaussianPdf';
 
 export default class GaussianPdf extends Pdf {
   /**
@@ -22,6 +22,6 @@ export default class GaussianPdf extends Pdf {
    * @returns float probability density
    */
   density(x) {
-    return new EvalGaussianPdf(x, this.mu, this.sigma);
+    // return new EvalGaussianPdf(x, this.mu, this.sigma);
   }
 }

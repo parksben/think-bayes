@@ -1,7 +1,7 @@
 import Cdf from './Cdf';
+import Pmf from './Pmf';
 import Joint from './Joint';
 import Hist from './Hist';
-import Pmf from './Pmf';
 import Suite from './Suite';
 import { linspace } from './algorithm/num';
 import math from './math';

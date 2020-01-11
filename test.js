@@ -1,5 +1,4 @@
-// import { Pmf } from './src';
-const { Pmf } = require('./dist');
+const { Pmf } = require('./lib');
 
 const pmf = new Pmf();
 

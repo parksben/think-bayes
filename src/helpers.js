@@ -1,5 +1,5 @@
 import { ValueError } from './utils';
-import math from '../math';
+import math from './math';
 import { makePmfFromList } from './convertors';
 import Pmf from './Pmf';
 import { linspace } from './algorithm/num';
