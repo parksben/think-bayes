@@ -16,10 +16,10 @@ export default class DictWrapper {
     if (!values) return;
 
     const initMethods = [
-      this.initPmf,
-      this.initMapping,
-      this.initSequence,
-      this.initFailure,
+      this.initPmf.bind(this),
+      this.initSequence.bind(this),
+      this.initMapping.bind(this),
+      this.initFailure.bind(this),
     ];
 
     for (let method of initMethods) {

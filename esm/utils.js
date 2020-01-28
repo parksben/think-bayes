@@ -1,5 +1,3 @@
-import math from './math';
-
 // ErrorType: ValueError
 export class ValueError extends Error {}
 

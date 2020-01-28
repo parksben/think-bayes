@@ -8,16 +8,16 @@
 
 ### Solution 1
 
-Use PMF directly:
+Use class `Pmf`:
 
 ```bash
-yarn run-demo ./demo/cookie/solution1.js
+yarn run-demo ./demo/cookie/solution1.js # npm run run-demo ./demo/cookie/solution1.js
 ```
 
 ### Solution 2
 
-Use class `Cookie`:
+Use class `Suite`:
 
 ```bash
-yarn run-demo ./demo/cookie/solution2.js
+yarn run-demo ./demo/cookie/solution2.js # npm run run-demo ./demo/cookie/solution2.js
 ```

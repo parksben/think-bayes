@@ -76,7 +76,7 @@ function () {
 
     this.logFlag = false;
     if (!values) return;
-    var initMethods = [this.initPmf, this.initMapping, this.initSequence, this.initFailure];
+    var initMethods = [this.initPmf.bind(this), this.initSequence.bind(this), this.initMapping.bind(this), this.initFailure.bind(this)];
 
     for (var _i = 0, _initMethods = initMethods; _i < _initMethods.length; _i++) {
       var method = _initMethods[_i];

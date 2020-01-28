@@ -1,10 +1,10 @@
 # think-bayes
 
-A Think-Bayes library for ES6+ and node.js environment.
+An algorithm framework of probability and statistics for ES6+ and CommonJS environment.
 
 In progress...
 
-> 贝叶斯思维概率统计算法库（未完成，努力 coding 中...）
+> 用于 ES6+ 和 CommonJS 环境的概率统计算法框架（未完成，努力 coding 中...）
 
 ## Features - 已有功能
 
