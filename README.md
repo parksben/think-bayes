@@ -1,12 +1,12 @@
 # think-bayes
 
-An algorithm framework of probability and statistics for ES6+ and CommonJS environment.
+An algorithm framework of probability and statistics for **ES6+** and **CommonJS** environment.
 
 In progress...
 
-> 用于 ES6+ 和 CommonJS 环境的概率统计算法框架（未完成，努力 coding 中...）
+> 用于 **ES6+** 和 **CommonJS** 环境的概率统计算法框架（未完成，努力 coding 中...）
 
-## Features - 已有功能
+## Features
 
 This library provides the following **classes** for calculations related to probability and statistics
 
