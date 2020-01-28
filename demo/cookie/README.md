@@ -6,18 +6,13 @@
 
 ## Run Solution
 
-### Solution 1
-
-Use class `Pmf`:
-
 ```bash
-yarn run-demo ./demo/cookie/solution1.js # npm run run-demo ./demo/cookie/solution1.js
+yarn run-demo ./demo/cookie/solution.js # npm run run-demo ./demo/cookie/solution.js
 ```
 
-### Solution 2
+## Output
 
-Use class `Suite`:
-
-```bash
-yarn run-demo ./demo/cookie/solution2.js # npm run run-demo ./demo/cookie/solution2.js
-```
+| Value | Prob |
+| ----- | ---- |
+| Bowl1 | 0.6  |
+| Bowl2 | 0.4  |
