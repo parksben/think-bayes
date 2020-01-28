@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "description": "A Think-Bayes library for ES and node.js environment.",
   "scripts": {
-    "build:index": "npx rimraf src/index.js && npx create-index --ignoreUnsafe src",
-    "build:module": "npx rimraf lib && npx babel src --copy-files --source-maps --extensions .js --out-dir lib",
-    "build": "npm run build:index && npm run build:module"
+    "build:index": "npx rimraf esm/index.js && npx create-index --ignoreUnsafe esm",
+    "build:module": "npx rimraf cjs && npx babel esm --copy-files --source-maps --extensions .js --out-dir cjs",
+    "build": "npm run build:index && npm run build:module",
+    "run-demo": "npx babel-node"
   },
   "dependencies": {
     "core-js": "3"
@@ -13,6 +14,7 @@
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
+    "@babel/node": "^7.8.3",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/plugin-transform-arrow-functions": "^7.7.4",
     "@babel/polyfill": "^7.7.0",
