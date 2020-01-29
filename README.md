@@ -6,11 +6,19 @@ In progress...
 
 > 用于 **ES6+** 和 **CommonJS** 环境的概率统计算法框架（未完成，努力 coding 中...）
 
-## Features
+## Algorithm classes
 
-This library provides the following **classes** for calculations related to probability and statistics
+This library provides some **classes** following for calculations related to probability and statistics.
 
-> 本算法库提供以下 **类** 用于概率统计相关的计算
+> 本框架提供以下 **类（class）** 用于概率统计相关的计算
+
+These classes can be imported by the same way following:
+
+> 引入这些类的方式如下：
+
+```js
+import { Pmf, Cdf, Pdf, Suite } from 'think-bayes';
+```
 
 ### Pmf
 
@@ -72,3 +80,16 @@ Represents a PDF estimated by KDE.
 
 > 由 内核密度估计（KDE）估算 概率密度函数（PDF）
 
+## Helpers
+
+This library provides some **functions** following for calculations related to probability and statistics.
+
+> 本框架提供以下 **工具函数** 用于概率统计相关的计算
+
+These functions can be imported by the same way following:
+
+> 引入这些方法的方式如下：
+
+```js
+import { odds, probability, percentile } from 'think-bayes/helpers';
+```
