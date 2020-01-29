@@ -1,11 +1,11 @@
-const { Suite } = require('../../cjs');
+const { Suite, Demical } = require('../../cjs');
 
 class Dice extends Suite {
   likelihood(data, hypo) {
     if (hypo < data) {
       return 0;
     }
-    return 1 / hypo;
+    return Demical.div(1, hypo).toNumber();
   }
 }
 

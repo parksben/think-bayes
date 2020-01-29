@@ -1,0 +1,1 @@
+{"version":3,"sources":["../esm/Demical.js"],"names":["Decimal"],"mappings":";;;;;;;AAAA;;eACeA,gB","sourcesContent":["import { Decimal } from 'decimal.js';\nexport default Decimal;\n"],"file":"Demical.js"}

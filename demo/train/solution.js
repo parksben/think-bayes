@@ -6,7 +6,7 @@ class Train extends Suite {
     if (hypo < data) {
       return 0;
     }
-    return 1 / hypo;
+    return Demical.div(1, hypo).toNumber();
   }
 }
 

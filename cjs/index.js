@@ -9,6 +9,12 @@ Object.defineProperty(exports, "Cdf", {
     return _Cdf.default;
   }
 });
+Object.defineProperty(exports, "Demical", {
+  enumerable: true,
+  get: function get() {
+    return _Demical.default;
+  }
+});
 Object.defineProperty(exports, "DictWrapper", {
   enumerable: true,
   get: function get() {
@@ -95,6 +101,8 @@ Object.defineProperty(exports, "utils", {
 });
 
 var _Cdf = _interopRequireDefault(require("./Cdf"));
+
+var _Demical = _interopRequireDefault(require("./Demical.js"));
 
 var _DictWrapper = _interopRequireDefault(require("./DictWrapper"));
 
