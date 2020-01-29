@@ -12,8 +12,8 @@ yarn run-demo ./demo/monty/solution.js # OR npm run run-demo ./demo/monty/soluti
 
 ## Output
 
-| Value | Prob               |
-| ----- | ------------------ |
-| A     | 0.3333333333333333 |
-| B     | 0                  |
-| C     | 0.6666666666666666 |
+| Value | Prob                |
+| ----- | ------------------- |
+| A     | 0.33333333333333337 |
+| B     | 0                   |
+| C     | 0.6666666666666666  |

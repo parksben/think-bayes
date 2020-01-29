@@ -22,8 +22,6 @@ require("core-js/modules/es.regexp.to-string");
 
 require("core-js/modules/es.string.iterator");
 
-require("core-js/modules/es.string.sub");
-
 require("core-js/modules/web.dom-collections.iterator");
 
 Object.defineProperty(exports, "__esModule", {
@@ -184,7 +182,7 @@ function (_Pmf) {
         var _ref6 = _slicedToArray(_ref4, 1),
             b = _ref6[0];
 
-        return _math.default.sub(b, a);
+        return _math.default.compare(b, a);
       });
       var _iteratorNormalCompletion3 = true;
       var _didIteratorError3 = false;

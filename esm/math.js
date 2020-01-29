@@ -1,38 +1,23 @@
-// Make a factor for float point numbers becoming to integer
-const factor = (l, r) => {
-  const tails = [l, r].map(x => (String(x).split('.')[1] || '').length);
-  return 10 ** Math.max(...tails);
-};
-
-// Make items for calculate
-const items = (a, b) => {
-  const f = factor(a, b);
-  const [l, r] = [a, b].map(x => parseInt(x * f));
-  return { l, r, f };
-};
+import { Decimal } from 'decimal.js';
 
 // Add: a + b
-export const add = (a, b) => {
-  const { l, r, f } = items(a, b);
-  return (l + r) / f;
-};
+export const add = (a, b) => Decimal.add(a, b).toNumber();
 
 // Subtract: a - b
-export const sub = (a, b) => {
-  const { l, r, f } = items(a, b);
-  return (l - r) / f;
-};
+export const sub = (a, b) => Decimal.sub(a, b).toNumber();
 
 // Multiply: a * b
-export const mult = (a, b) => {
-  const { l, r, f } = items(a, b);
-  return (l * r) / (f * f);
-};
+export const mult = (a, b) => Decimal.mul(a, b).toNumber();
 
 // Divide: a / b
-export const div = (a, b) => {
-  const { l, r } = items(a, b);
-  return l / r;
+export const div = (a, b) => Decimal.div(a, b).toNumber();
+
+// Compare function
+export const compare = (a, b) => {
+  if (typeof a === 'number' && typeof b === 'number') {
+    return sub(a, b);
+  }
+  return a - b;
 };
 
 // Factorial: n!
@@ -49,5 +34,6 @@ export default {
   sub,
   mult,
   div,
+  compare,
   factorial,
 };

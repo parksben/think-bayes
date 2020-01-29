@@ -50,7 +50,7 @@ export default class Joint extends Pmf {
     let total = 0;
     const t = this.items()
       .map(([x, p]) => [p, x])
-      .sort(([a], [b]) => math.sub(b, a));
+      .sort(([a], [b]) => math.compare(b, a));
 
     for (let [prob, val] of t) {
       interval.push(val);

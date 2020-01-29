@@ -9,7 +9,8 @@
     "run-demo": "npx babel-node"
   },
   "dependencies": {
-    "core-js": "3"
+    "core-js": "3",
+    "decimal.js": "^10.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",

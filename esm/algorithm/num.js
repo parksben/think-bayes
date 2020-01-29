@@ -28,3 +28,36 @@ export const linspace = (
   }
   return retStep ? [arr, step] : arr;
 };
+
+/**
+ * Return an sequence of numbers and is commonly used for looping a specific number of times in for loops.
+ * @param {number} start The value of the start parameter (or 0 if the parameter was not supplied)
+ * @param {number} stop The value of the stop parameter
+ * @param {number} step The value of the step parameter (or 1 if the parameter was not supplied)
+ */
+export const range = (...args) => {
+  const arr = [];
+  let [start, stop, step] = [0, 0, 1];
+
+  if (args.length === 1) {
+    [stop] = args;
+  }
+  if (args.length === 2) {
+    [start, stop] = args;
+  }
+  if (args.length === 3) {
+    [start, stop, step] = args;
+  }
+
+  if (stop < start && step < 0) {
+    for (let i = start; i > stop; i += step) {
+      arr.push(i);
+    }
+  } else {
+    for (let i = start; i < stop; i += step) {
+      arr.push(i);
+    }
+  }
+
+  return arr;
+};

@@ -41,10 +41,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.printTable = exports.logging = exports.isNode = exports.shallowClone = exports.UnimplementedMethodException = exports.ValueError = void 0;
 
-var _math = _interopRequireDefault(require("./math"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }

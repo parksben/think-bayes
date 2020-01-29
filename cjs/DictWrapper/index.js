@@ -495,7 +495,7 @@ function () {
         var _ref6 = _slicedToArray(_ref4, 1),
             b = _ref6[0];
 
-        return _math.default.sub(a, b);
+        return _math.default.compare(a, b);
       });
     }
     /**

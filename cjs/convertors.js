@@ -403,7 +403,7 @@ var makeCdfFromItems = function makeCdfFromItems(items) {
     var _ref4 = _slicedToArray(_ref2, 1),
         b = _ref4[0];
 
-    return _math.default.sub(a, b);
+    return _math.default.compare(a, b);
   });
   var _iteratorNormalCompletion8 = true;
   var _didIteratorError8 = false;

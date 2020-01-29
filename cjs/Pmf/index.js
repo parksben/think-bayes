@@ -181,9 +181,6 @@ function (_DictWrapper) {
       if (this.logFlag) throw new _utils.ValueError('pmf is under a log transform');
       var total = this.total();
       if (total === 0.0) throw new _utils.ValueError('Normalize: total probability is zero.');
-
-      var factor = _math.default.div(fraction, total);
-
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -194,7 +191,7 @@ function (_DictWrapper) {
               x = _step$value[0],
               p = _step$value[1];
 
-          this.d.set(x, _math.default.mult(p, factor));
+          this.d.set(x, _math.default.div(_math.default.mult(p, fraction), total));
         }
       } catch (err) {
         _didIteratorError = true;

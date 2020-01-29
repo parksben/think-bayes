@@ -12,7 +12,7 @@ yarn run-demo ./demo/m_and_m/solution.js # OR npm run run-demo ./demo/m_and_m/so
 
 ## Output
 
-| Value | Prob               |
-| ----- | ------------------ |
-| A     | 0.7407407407407407 |
-| B     | 0.2592592592592593 |
+| Value | Prob                |
+| ----- | ------------------- |
+| A     | 0.7407407407407408  |
+| B     | 0.25925925925925924 |

@@ -59,9 +59,8 @@ export default class Pmf extends DictWrapper {
     if (total === 0.0)
       throw new ValueError('Normalize: total probability is zero.');
 
-    const factor = math.div(fraction, total);
     for (let [x, p] of this.d.entries()) {
-      this.d.set(x, math.mult(p, factor));
+      this.d.set(x, math.div(math.mult(p, fraction), total));
     }
 
     return total;

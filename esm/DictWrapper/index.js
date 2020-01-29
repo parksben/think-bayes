@@ -252,7 +252,7 @@ export default class DictWrapper {
    * @returns array of [sorted value sequence, freq/prob sequence]
    */
   render() {
-    return [...this.d].sort(([a], [b]) => math.sub(a, b));
+    return [...this.d].sort(([a], [b]) => math.compare(a, b));
   }
 
   /**
