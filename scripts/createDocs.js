@@ -46,10 +46,15 @@ const markdown = {
 
 // generate docs of classes
 const classDocSrc = astList.filter(x => x.markup === 'CLASS_CONTENTS');
-classDocSrc.forEach(({ title, ast }) => {
+classDocSrc.forEach(({ title, source, ast }) => {
   const classParams = ast[0].tags.filter(x => x.type === 'param');
-  let itemDoc = `### ${title}(${classParams.map(x => x.name).join(', ')})\n\n`;
+  const itemHeading = `[**${title}**](${source.replace(/\/index\.js$/, '')}) ${
+    ast[0].code.includes('extends')
+      ? `<code>inherits ${ast[0].code.match(/extends\s(.*?)\s/)[1]}</code>`
+      : ''
+  }\n\n`;
 
+  let itemDoc = `# ${title}(${classParams.map(x => x.name).join(', ')})\n\n`;
   itemDoc +=
     ast[0].description.full
       .replace(/<\/?p>/g, '')
@@ -74,14 +79,20 @@ classDocSrc.forEach(({ title, ast }) => {
 
   if (ast[0].code.includes('extends')) {
     const parentClass = ast[0].code.match(/extends\s(.*?)\s/)[1];
-    itemDoc += `**Important:** This class inherits from **${parentClass}**, so you can use all methods of the parent class.\n\n`;
+    itemDoc += `**Important:** This class inherits from [**${parentClass}**](${source
+      .replace('esm/', '../')
+      .replace(title, parentClass)
+      .replace(
+        /\/index\.js$/,
+        ''
+      )}), so you can use all methods of the parent class.\n\n`;
   }
 
   ast.slice(1).forEach(({ tags, code, description }) => {
     const method = code.match(/^[^(]+\([^)]*?\)/)[0];
 
     if (!/^_/.test(method)) {
-      itemDoc += `<details>\n  <summary><b>.${method}</b></summary>\n\n`;
+      itemDoc += `## .${method}\n\n`;
       itemDoc +=
         description.full
           .replace(/<\/?p>/g, '')
@@ -105,12 +116,16 @@ classDocSrc.forEach(({ title, ast }) => {
       if (returns) {
         itemDoc += `**@Returns:** ${returns.string}\n\n`;
       }
-
-      itemDoc += '</details>\n\n';
     }
   });
 
-  markdown.CLASS_CONTENTS += itemDoc;
+  fs.writeFileSync(
+    path.resolve(__dirname, '../', source.replace(/index\.js/, 'README.md')),
+    itemDoc,
+    'utf8'
+  );
+
+  markdown.CLASS_CONTENTS += itemHeading;
 });
 
 // generate docs of helpers
