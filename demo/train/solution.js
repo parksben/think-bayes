@@ -1,4 +1,4 @@
-const { Suite } = require('../../cjs');
+const { Suite, Decimal } = require('../../cjs');
 const { range } = require('../../cjs/algorithm/num');
 
 class Train extends Suite {
@@ -6,7 +6,7 @@ class Train extends Suite {
     if (hypo < data) {
       return 0;
     }
-    return Demical.div(1, hypo).toNumber();
+    return Decimal.div(1, hypo).toNumber();
   }
 }
 
