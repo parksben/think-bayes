@@ -1,16 +1,15 @@
-/**
- * Represents a cumulative distribution function.
- * @param {array} xs sequence of values
- * @param {array} ps sequence of probabilities
- * @param {string} name string used as a graph label
- */
-
 import DictWrapper from '../DictWrapper';
 import { makePmfFromCdf } from '../convertors';
 import math from '../math';
 import { UnimplementedMethodException } from '../utils';
 import { bisect } from '../algorithm/bisect';
 
+/**
+ * Represents a cumulative distribution function.
+ * @param {array} xs sequence of values
+ * @param {array} ps sequence of probabilities
+ * @param {string} name string used as a graph label
+ */
 export default class Cdf extends DictWrapper {
   constructor(xs, ps, name) {
     super(null, name);

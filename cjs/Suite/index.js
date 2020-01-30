@@ -69,6 +69,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+/**
+ * Represents a suite of hypotheses and their probabilities.
+ * @param {string|array|object} values sequence of values
+ * @param {string} name sequence of values
+ */
 var Suite =
 /*#__PURE__*/
 function (_Pmf) {

@@ -1,14 +1,15 @@
-/**
- * Represents a probability mass function.
- * Values can be any hashable type; probabilities are floating-point.
- * Pmfs are not necessarily normalized.
- */
-
 import DictWrapper from '../DictWrapper';
 import { ValueError } from '../utils';
 import { makeCdfFromPmf } from '../convertors';
 import math from '../math';
 
+/**
+ * Represents a probability mass function.
+ * Values can be any hashable type; probabilities are floating-point.
+ * Pmfs are not necessarily normalized.
+ * @param {string|array|object} values sequence of values
+ * @param {string} name sequence of values
+ */
 export default class Pmf extends DictWrapper {
   /**
    * Gets the probability associated with the value x.
@@ -114,7 +115,7 @@ export default class Pmf extends DictWrapper {
 
   /**
    * Computes the variance of a PMF.
-   * @param {number} mu the point around which the variance is computed; if omitted, computes the mean
+   * @param {number} miu the point around which the variance is computed; if omitted, computes the mean
    * @returns float variance
    */
   var(miu) {

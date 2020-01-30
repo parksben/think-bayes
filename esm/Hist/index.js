@@ -1,10 +1,11 @@
+import DictWrapper from '../DictWrapper';
+
 /**
  * Represents a histogram, which is a map from values to frequencies.
  * Values can be any hashable type; frequencies are integer counters.
+ * @param {string|array|object} values sequence of values
+ * @param {string} name sequence of values
  */
-
-import DictWrapper from '../DictWrapper';
-
 export default class Hist extends DictWrapper {
   /**
    * Gets the frequency associated with the value x.

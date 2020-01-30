@@ -61,6 +61,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+/**
+ * Represents a joint distribution.
+ * The values are sequences (usually tuples)
+ * @param {string|array|object} values sequence of values
+ * @param {string} name sequence of values
+ */
 var Joint =
 /*#__PURE__*/
 function (_Pmf) {

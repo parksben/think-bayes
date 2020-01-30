@@ -1,11 +1,12 @@
-/**
- * Represents a joint distribution.
- * The values are sequences (usually tuples)
- */
-
 import Pmf from '../Pmf';
 import math from '../math';
 
+/**
+ * Represents a joint distribution.
+ * The values are sequences (usually tuples)
+ * @param {string|array|object} values sequence of values
+ * @param {string} name sequence of values
+ */
 export default class Joint extends Pmf {
   /**
    * Gets the marginal distribution of the indicated variable.

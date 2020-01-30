@@ -1,16 +1,13 @@
-/**
- * Represents a PDF estimated by KDE.
- */
-
 import Pdf from '../Pdf';
 import { makePmfFromItems } from '../convertors';
 import GaussianKde from '../GaussianKde';
 
+/**
+ * Represents a PDF estimated by KDE.
+ * Estimates the density function based on a sample.
+ * @param {array} sample sequence of data
+ */
 export default class EstimatedPdf extends Pdf {
-  /**
-   * Estimates the density function based on a sample.
-   * @param {array} sample sequence of data
-   */
   constructor(sample) {
     this.kde = new GaussianKde(sample);
   }
@@ -25,7 +22,10 @@ export default class EstimatedPdf extends Pdf {
 
   makePmf(xs, name) {
     const ps = this.kde.evaluate(xs);
-    const pmf = makePmfFromItems(xs.map((x, i) => [x, ps[i]]), name);
+    const pmf = makePmfFromItems(
+      xs.map((x, i) => [x, ps[i]]),
+      name
+    );
     return pmf;
   }
 }

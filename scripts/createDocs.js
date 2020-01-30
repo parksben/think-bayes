@@ -8,6 +8,7 @@ const sourceMapping = [
     title: 'Algorithm classes',
     markup: 'CLASS_CONTENTS',
     files: [
+      { title: 'DictWrapper', source: 'esm/DictWrapper/index.js' },
       { title: 'Pmf', source: 'esm/Pmf/index.js' },
       { title: 'Cdf', source: 'esm/Cdf/index.js' },
       { title: 'Pdf', source: 'esm/Pdf/index.js' },
@@ -48,18 +49,41 @@ const markdown = {
 // generate docs of classes
 const classDocSrc = astList.filter(x => x.markup === 'CLASS_CONTENTS');
 classDocSrc.forEach(({ title, ast }) => {
-  let itemDoc = `### ${title}\n\n`;
+  const classParams = ast[0].tags.filter(x => x.type === 'param');
+  let itemDoc = `### ${title}(${classParams.map(x => x.name).join(', ')})\n\n`;
 
   itemDoc +=
     ast[0].description.full
       .replace(/<\/?p>/g, '')
       .replace(/\n?<br\s?\/?>\n?/g, '\n\n') + '\n\n';
 
+  if (classParams.length > 0) {
+    const paramsTable = printTable({
+      header: ['param', 'type', 'description'],
+      rows: classParams.map(({ name, types, description: note }) => [
+        name,
+        types.join(' | '),
+        note.replace(/<\/?p>/g, ''),
+      ]),
+      mode: 'function',
+    });
+    itemDoc += `**@Params:**\n${paramsTable}\n`;
+  }
+
+  if (ast.slice(1).length > 0) {
+    itemDoc += '**@Methods:**\n\n';
+  }
+
+  if (ast[0].code.includes('extends')) {
+    const parentClass = ast[0].code.match(/extends\s(.*?)\s/)[1];
+    itemDoc += `**Important:** This class inherits from **${parentClass}**, so you can use all methods of the parent class.\n\n`;
+  }
+
   ast.slice(1).forEach(({ tags, code, description }) => {
     const method = code.match(/^[^(]+\([^)]*?\)/)[0];
 
     if (!/^_/.test(method)) {
-      itemDoc += `<details>\n  <summary>#### .${method}</summary>\n\n`;
+      itemDoc += `<details>\n  <summary><b>.${method}</b></summary>\n\n`;
       itemDoc +=
         description.full
           .replace(/<\/?p>/g, '')
@@ -101,7 +125,7 @@ helperDocSrc.forEach(({ title, ast }) => {
       .replace(/\s\=\s\(?([^)]+)\)?\s/, '($1)');
 
     if (!/^_/.test(method)) {
-      itemDoc += `### ${method}\n\n`;
+      itemDoc += `<details>\n  <summary><b>${method}</b></summary>\n\n`;
       itemDoc +=
         description.full
           .replace(/<\/?p>/g, '')
@@ -125,6 +149,8 @@ helperDocSrc.forEach(({ title, ast }) => {
       if (returns) {
         itemDoc += `**@Returns:** ${returns.string}\n\n`;
       }
+
+      itemDoc += '</details>\n\n';
     }
   });
 

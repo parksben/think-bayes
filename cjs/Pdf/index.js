@@ -31,6 +31,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+/**
+ * Represents a probability density function (PDF).
+ */
 var Pdf =
 /*#__PURE__*/
 function () {
@@ -43,8 +46,7 @@ function () {
 
     /**
      * Evaluates this pdf at x.
-     * This method needs implement by children class
-     * if not there is an `UnimplementedMethodException` would be throw
+     * This method needs implement by children class, if not there is an `UnimplementedMethodException` would be throw when the method is called
      * @param {number} x number
      * @returns float probability density
      */

@@ -1,12 +1,11 @@
+import { bisect } from '../algorithm/bisect';
+import math from '../math';
+
 /**
  * Represents a mapping between sorted sequences; performs linear interp.
  * @param {array} xs sorted list
  * @param {array} ys sorted list
  */
-
-import { bisect } from '../algorithm/bisect';
-import math from '../math';
-
 export default class Interpolater {
   constructor({ xs = [], ys = [] }) {
     this.xs = xs;

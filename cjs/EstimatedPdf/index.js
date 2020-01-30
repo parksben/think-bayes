@@ -47,15 +47,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+/**
+ * Represents a PDF estimated by KDE.
+ * Estimates the density function based on a sample.
+ * @param {array} sample sequence of data
+ */
 var EstimatedPdf =
 /*#__PURE__*/
 function (_Pdf) {
   _inherits(EstimatedPdf, _Pdf);
 
-  /**
-   * Estimates the density function based on a sample.
-   * @param {array} sample sequence of data
-   */
   function EstimatedPdf(sample) {
     var _this;
 

@@ -57,6 +57,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+/**
+ * Represents a histogram, which is a map from values to frequencies.
+ * Values can be any hashable type; frequencies are integer counters.
+ * @param {string|array|object} values sequence of values
+ * @param {string} name sequence of values
+ */
 var Hist =
 /*#__PURE__*/
 function (_DictWrapper) {

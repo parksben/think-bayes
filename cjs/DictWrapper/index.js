@@ -65,6 +65,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+/**
+ * An base class for generation an object contains a dictionary.
+ * @param {string|array|object} values sequence of values
+ * @param {string} name sequence of values
+ */
 var DictWrapper =
 /*#__PURE__*/
 function () {
@@ -463,7 +468,7 @@ function () {
     }
     /**
      * Sets the dictionary.
-     * @param {map/object} d
+     * @param {map|object} d
      */
 
   }, {

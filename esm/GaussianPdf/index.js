@@ -1,10 +1,9 @@
-/**
- * Represents the PDF of a Gaussian distribution.
- */
-
 import Pdf from '../Pdf';
 // import EvalGaussianPdf from '../EvalGaussianPdf';
 
+/**
+ * Represents the PDF of a Gaussian distribution.
+ */
 export default class GaussianPdf extends Pdf {
   /**
    * Constructs a Gaussian Pdf with given mu and sigma.

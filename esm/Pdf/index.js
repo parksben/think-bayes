@@ -1,15 +1,13 @@
-/**
- * Represents a probability density function (PDF).
- */
-
 import { UnimplementedMethodException } from '../utils';
 import Pmf from '../Pmf';
 
+/**
+ * Represents a probability density function (PDF).
+ */
 export default class Pdf {
   /**
    * Evaluates this pdf at x.
-   * This method needs implement by children class
-   * if not there is an `UnimplementedMethodException` would be throw
+   * This method needs implement by children class, if not there is an `UnimplementedMethodException` would be throw when the method is called
    * @param {number} x number
    * @returns float probability density
    */

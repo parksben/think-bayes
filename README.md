@@ -1,10 +1,57 @@
 # think-bayes
 
-An algorithm framework of probability and statistics for **browser** and **Node.js** environment.
+An algorithm collection of probability and statistics for **browser** and **Node.js** environment.
 
 In progress...
 
-> 适用于 **浏览器** 和 **Node.js** 环境的概率统计算法框架（未完成，努力 coding 中...）
+> 适用于 **浏览器** 和 **Node.js** 环境的概率统计算法集（非正式版本，功能亟待完善，努力 coding 中...）
+
+## Install
+
+```bash
+yarn add think-bayes # OR npm i --save think-bayes
+```
+
+## Quickstart
+
+Let us resolve [the cookie problem](https://www.oreilly.com/library/view/think-bayes/13333JSONBOOK/a0000000336.html) by using the class `Suite`:
+
+```js
+const { Suite } = require('think-bayes');
+
+class Cookie extends Suite {
+  mixes = {
+    Bowl1: {
+      vanilla: 0.75,
+      chocolate: 0.25,
+    },
+    Bowl2: {
+      vanilla: 0.5,
+      chocolate: 0.5,
+    },
+  };
+
+  likelihood(data, hypo) {
+    const mix = this.mixes[hypo];
+    const like = mix[data];
+    return like;
+  }
+}
+
+const hypos = ['Bowl1', 'Bowl2'];
+const pmf = new Cookie(hypos);
+pmf.update('vanilla');
+
+const result = pmf.render();
+console.log(result); // [ [ 'Bowl1', 0.6 ], [ 'Bowl2', 0.4 ] ]
+
+// You can also print the result as a table
+pmf.print();
+// | Value | Prob |
+// |-------|------|
+// | Bowl1 | 0.6  |
+// | Bowl2 | 0.4  |
+```
 
 ## Algorithm Classes
 
@@ -16,7 +63,279 @@ These classes can be imported by the same way following:
 import { Pmf, Cdf, Pdf, Suite } from 'think-bayes';
 ```
 
-### Pmf
+### DictWrapper(values, name)
+
+An base class for generation an object contains a dictionary.
+
+**@Params:**
+
+| param  | type                    | description        |
+|--------|-------------------------|--------------------|
+| values | string | array | object | sequence of values |
+| name   | string                  | sequence of values |
+
+
+**@Methods:**
+
+<details>
+  <summary><b>.initSequence(values)</b></summary>
+
+Initializes with a sequence of equally-likely values.
+
+**@Params:**
+
+| param  | type  | description        |
+|--------|-------|--------------------|
+| values | array | sequence of values |
+
+
+</details>
+
+<details>
+  <summary><b>.initMapping(values)</b></summary>
+
+Initializes with a map from value to probability.
+
+**@Params:**
+
+| param  | type | description                   |
+|--------|------|-------------------------------|
+| values | map  | map from value to probability |
+
+
+</details>
+
+<details>
+  <summary><b>.initPmf(values)</b></summary>
+
+Initializes with a Pmf.
+
+**@Params:**
+
+| param  | type | description |
+|--------|------|-------------|
+| values | pmf  | Pmf object  |
+
+
+</details>
+
+<details>
+  <summary><b>.initFailure(values)</b></summary>
+
+Throw an error.
+
+</details>
+
+<details>
+  <summary><b>.values()</b></summary>
+
+Gets an unsorted sequence of values.
+
+Note: One source of confusion is that the keys of this
+
+dictionary are the values of the Hist/Pmf, and the
+
+values of the dictionary are frequencies/probabilities.
+
+</details>
+
+<details>
+  <summary><b>.items()</b></summary>
+
+Gets an unsorted sequence of (value, freq/prob) pairs.
+
+</details>
+
+<details>
+  <summary><b>.set(value, prob)</b></summary>
+
+Sets the freq/prob associated with the value x.
+
+**@Params:**
+
+| param | type   | description               |
+|-------|--------|---------------------------|
+| value | any    | number value or case name |
+| prob  | number | number freq or prob       |
+
+
+</details>
+
+<details>
+  <summary><b>.incr(x, term = 1)</b></summary>
+
+Increments the freq/prob associated with the value x.
+
+**@Params:**
+
+| param | type   | description               |
+|-------|--------|---------------------------|
+| x     | any    | number value or case name |
+| term  | number | how much to increment by  |
+
+
+</details>
+
+<details>
+  <summary><b>.mult(x, factor = 1)</b></summary>
+
+Scales the freq/prob associated with the value x.
+
+**@Params:**
+
+| param  | type   | description               |
+|--------|--------|---------------------------|
+| x      | any    | number value or case name |
+| factor | number | how much to multiply by   |
+
+
+</details>
+
+<details>
+  <summary><b>.remove(value)</b></summary>
+
+Removes a value.
+
+Throws an exception if the value is not there.
+
+**@Params:**
+
+| param | type | description     |
+|-------|------|-----------------|
+| value | any  | value to remove |
+
+
+</details>
+
+<details>
+  <summary><b>.total()</b></summary>
+
+Returns the total of the frequencies/probabilities in the map.
+
+</details>
+
+<details>
+  <summary><b>.maxLike()</b></summary>
+
+Returns the largest frequency/probability in the map.
+
+</details>
+
+<details>
+  <summary><b>.copy(name)</b></summary>
+
+Returns a copy.
+
+Make a shallow copy of d. If you want a deep copy of d,
+
+use one method to deep clone the whole object.
+
+**@Params:**
+
+| param | type   | description                  |
+|-------|--------|------------------------------|
+| name  | string | string name for the new Hist |
+
+
+**@Returns:** new object
+
+</details>
+
+<details>
+  <summary><b>.scale(factor)</b></summary>
+
+Multiplies the values by a factor.
+
+**@Params:**
+
+| param  | type   | description         |
+|--------|--------|---------------------|
+| factor | number | what to multiply by |
+
+
+**@Returns:** new object
+
+</details>
+
+<details>
+  <summary><b>.log(m)</b></summary>
+
+Log transforms the probabilities.
+
+Removes values with probability 0.
+
+Normalizes so that the largest logprob is 0.
+
+**@Params:**
+
+| param | type   | description                                    |
+|-------|--------|------------------------------------------------|
+| m     | number | how much to shift the ps before exponentiating |
+
+
+</details>
+
+<details>
+  <summary><b>.exp(m)</b></summary>
+
+Exponentiates the probabilities.
+
+If m is un-exist, normalizes so that the largest prob is 1.
+
+**@Params:**
+
+| param | type   | description                                    |
+|-------|--------|------------------------------------------------|
+| m     | number | how much to shift the ps before exponentiating |
+
+
+</details>
+
+<details>
+  <summary><b>.getDict()</b></summary>
+
+Gets the dictionary.
+
+</details>
+
+<details>
+  <summary><b>.setDict(d)</b></summary>
+
+Sets the dictionary.
+
+**@Params:**
+
+| param | type         | description |
+|-------|--------------|-------------|
+| d     | map | object |             |
+
+
+</details>
+
+<details>
+  <summary><b>.render()</b></summary>
+
+Generates a sequence of points suitable for plotting.
+
+**@Returns:** array of [sorted value sequence, freq/prob sequence]
+
+</details>
+
+<details>
+  <summary><b>.print()</b></summary>
+
+Prints the values and freqs/probs in ascending order.
+
+**@Params:**
+
+| param  | type | description |
+|--------|------|-------------|
+| indent |      |             |
+
+
+</details>
+
+### Pmf(values, name)
 
 Represents a probability mass function.
 
@@ -24,8 +343,20 @@ Values can be any hashable type; probabilities are floating-point.
 
 Pmfs are not necessarily normalized.
 
-#### <details>
-  <summary>.prob(x, probDefault = 0)</summary>
+**@Params:**
+
+| param  | type                    | description        |
+|--------|-------------------------|--------------------|
+| values | string | array | object | sequence of values |
+| name   | string                  | sequence of values |
+
+
+**@Methods:**
+
+**Important:** This class inherits from **DictWrapper**, so you can use all methods of the parent class.
+
+<details>
+  <summary><b>.prob(x, probDefault = 0)</b></summary>
 
 Gets the probability associated with the value x.
 
@@ -41,8 +372,8 @@ Gets the probability associated with the value x.
 
 </details>
 
-#### <details>
-  <summary>.probs(xs)</summary>
+<details>
+  <summary><b>.probs(xs)</b></summary>
 
 Gets probabilities for a sequence of values.
 
@@ -57,8 +388,8 @@ Gets probabilities for a sequence of values.
 
 </details>
 
-#### <details>
-  <summary>.makeCdf(name)</summary>
+<details>
+  <summary><b>.makeCdf(name)</b></summary>
 
 Makes a cdf.
 
@@ -73,8 +404,8 @@ Makes a cdf.
 
 </details>
 
-#### <details>
-  <summary>.probGreater(x)</summary>
+<details>
+  <summary><b>.probGreater(x)</b></summary>
 
 Calculate the probability while the value is greater than x.
 
@@ -89,8 +420,8 @@ Calculate the probability while the value is greater than x.
 
 </details>
 
-#### <details>
-  <summary>.probLess(x)</summary>
+<details>
+  <summary><b>.probLess(x)</b></summary>
 
 Calculate the probability while the value is less than x.
 
@@ -105,8 +436,8 @@ Calculate the probability while the value is less than x.
 
 </details>
 
-#### <details>
-  <summary>.normalize(fraction = 1.0)</summary>
+<details>
+  <summary><b>.normalize(fraction = 1.0)</b></summary>
 
 Normalizes this PMF so the sum of all probs is fraction.
 
@@ -121,8 +452,8 @@ Normalizes this PMF so the sum of all probs is fraction.
 
 </details>
 
-#### <details>
-  <summary>.random()</summary>
+<details>
+  <summary><b>.random()</b></summary>
 
 Chooses a random element from this PMF.
 
@@ -130,8 +461,8 @@ Chooses a random element from this PMF.
 
 </details>
 
-#### <details>
-  <summary>.mean()</summary>
+<details>
+  <summary><b>.mean()</b></summary>
 
 Computes the mean of a PMF.
 
@@ -139,8 +470,8 @@ Computes the mean of a PMF.
 
 </details>
 
-#### <details>
-  <summary>.var(miu)</summary>
+<details>
+  <summary><b>.var(miu)</b></summary>
 
 Computes the variance of a PMF.
 
@@ -148,15 +479,15 @@ Computes the variance of a PMF.
 
 | param | type   | description                                                                    |
 |-------|--------|--------------------------------------------------------------------------------|
-| mu    | number | the point around which the variance is computed; if omitted, computes the mean |
+| miu   | number | the point around which the variance is computed; if omitted, computes the mean |
 
 
 **@Returns:** float variance
 
 </details>
 
-#### <details>
-  <summary>.maximumLikelihood()</summary>
+<details>
+  <summary><b>.maximumLikelihood()</b></summary>
 
 Returns the value with the highest probability.
 
@@ -164,8 +495,8 @@ Returns the value with the highest probability.
 
 </details>
 
-#### <details>
-  <summary>.credibleInterval(percentage = 90)</summary>
+<details>
+  <summary><b>.credibleInterval(percentage = 90)</b></summary>
 
 Computes the central credible interval.
 
@@ -182,8 +513,8 @@ If percentage=90, computes the 90% CI.
 
 </details>
 
-#### <details>
-  <summary>.add(other)</summary>
+<details>
+  <summary><b>.add(other)</b></summary>
 
 Computes the Pmf of the sum of values drawn from self and other.
 
@@ -198,8 +529,8 @@ Computes the Pmf of the sum of values drawn from self and other.
 
 </details>
 
-#### <details>
-  <summary>.addPmf(other)</summary>
+<details>
+  <summary><b>.addPmf(other)</b></summary>
 
 Computes the Pmf of the sum of values drawn from self and other.
 
@@ -214,8 +545,8 @@ Computes the Pmf of the sum of values drawn from self and other.
 
 </details>
 
-#### <details>
-  <summary>.addConstant(other)</summary>
+<details>
+  <summary><b>.addConstant(other)</b></summary>
 
 Computes the Pmf of the sum a constant and  values from self.
 
@@ -230,8 +561,8 @@ Computes the Pmf of the sum a constant and  values from self.
 
 </details>
 
-#### <details>
-  <summary>.sub(other)</summary>
+<details>
+  <summary><b>.sub(other)</b></summary>
 
 Computes the Pmf of the diff of values drawn from self and other.
 
@@ -246,8 +577,8 @@ Computes the Pmf of the diff of values drawn from self and other.
 
 </details>
 
-#### <details>
-  <summary>.max(k)</summary>
+<details>
+  <summary><b>.max(k)</b></summary>
 
 Computes the CDF of the maximum of k selections from this dist.
 
@@ -262,12 +593,25 @@ Computes the CDF of the maximum of k selections from this dist.
 
 </details>
 
-### Cdf
+### Cdf(xs, ps, name)
 
 Represents a cumulative distribution function.
 
-#### <details>
-  <summary>.copy(name)</summary>
+**@Params:**
+
+| param | type   | description                  |
+|-------|--------|------------------------------|
+| xs    | array  | sequence of values           |
+| ps    | array  | sequence of probabilities    |
+| name  | string | string used as a graph label |
+
+
+**@Methods:**
+
+**Important:** This class inherits from **DictWrapper**, so you can use all methods of the parent class.
+
+<details>
+  <summary><b>.copy(name)</b></summary>
 
 Represents a cumulative distribution function.
 
@@ -282,8 +626,8 @@ Represents a cumulative distribution function.
 
 </details>
 
-#### <details>
-  <summary>.makePmf(name)</summary>
+<details>
+  <summary><b>.makePmf(name)</b></summary>
 
 Makes a Pmf.
 
@@ -298,8 +642,8 @@ Makes a Pmf.
 
 </details>
 
-#### <details>
-  <summary>.values()</summary>
+<details>
+  <summary><b>.values()</b></summary>
 
 Returns a sorted list of values.
 
@@ -307,8 +651,8 @@ Returns a sorted list of values.
 
 </details>
 
-#### <details>
-  <summary>.items()</summary>
+<details>
+  <summary><b>.items()</b></summary>
 
 Returns a sorted sequence of [value, probability] pairs.
 
@@ -316,8 +660,8 @@ Returns a sorted sequence of [value, probability] pairs.
 
 </details>
 
-#### <details>
-  <summary>.append(x, p)</summary>
+<details>
+  <summary><b>.append(x, p)</b></summary>
 
 Add an (x, p) pair to the end of this CDF.
 
@@ -337,8 +681,8 @@ that the result is a legal CDF.
 
 </details>
 
-#### <details>
-  <summary>.shift(term)</summary>
+<details>
+  <summary><b>.shift(term)</b></summary>
 
 Adds a term to the xs.
 
@@ -353,8 +697,8 @@ Adds a term to the xs.
 
 </details>
 
-#### <details>
-  <summary>.scale(factor)</summary>
+<details>
+  <summary><b>.scale(factor)</b></summary>
 
 Multiplies the xs by a factor.
 
@@ -369,8 +713,8 @@ Multiplies the xs by a factor.
 
 </details>
 
-#### <details>
-  <summary>.prob(x)</summary>
+<details>
+  <summary><b>.prob(x)</b></summary>
 
 Returns CDF(x), the probability that corresponds to value x.
 
@@ -385,8 +729,8 @@ Returns CDF(x), the probability that corresponds to value x.
 
 </details>
 
-#### <details>
-  <summary>.value(p)</summary>
+<details>
+  <summary><b>.value(p)</b></summary>
 
 Returns InverseCDF(p), the value that corresponds to probability p.
 
@@ -401,8 +745,8 @@ Returns InverseCDF(p), the value that corresponds to probability p.
 
 </details>
 
-#### <details>
-  <summary>.percentile(p)</summary>
+<details>
+  <summary><b>.percentile(p)</b></summary>
 
 Returns the value that corresponds to percentile p.
 
@@ -417,8 +761,8 @@ Returns the value that corresponds to percentile p.
 
 </details>
 
-#### <details>
-  <summary>.random()</summary>
+<details>
+  <summary><b>.random()</b></summary>
 
 Chooses a random value from this distribution.
 
@@ -426,8 +770,8 @@ Chooses a random value from this distribution.
 
 </details>
 
-#### <details>
-  <summary>.sample(n)</summary>
+<details>
+  <summary><b>.sample(n)</b></summary>
 
 Generates a random sample from this distribution.
 
@@ -442,8 +786,8 @@ Generates a random sample from this distribution.
 
 </details>
 
-#### <details>
-  <summary>.mean()</summary>
+<details>
+  <summary><b>.mean()</b></summary>
 
 Computes the mean of a CDF.
 
@@ -451,8 +795,8 @@ Computes the mean of a CDF.
 
 </details>
 
-#### <details>
-  <summary>.credibleInterval(percentage = 90)</summary>
+<details>
+  <summary><b>.credibleInterval(percentage = 90)</b></summary>
 
 Computes the central credible interval.
 
@@ -469,8 +813,8 @@ If percentage=90, computes the 90% CI.
 
 </details>
 
-#### <details>
-  <summary>.render()</summary>
+<details>
+  <summary><b>.render()</b></summary>
 
 Generates a sequence of points suitable for plotting.
 
@@ -480,8 +824,8 @@ An empirical CDF is a step function; linear interpolation can be misleading.
 
 </details>
 
-#### <details>
-  <summary>.max(k)</summary>
+<details>
+  <summary><b>.max(k)</b></summary>
 
 Computes the CDF of the maximum of k selections from this dist.
 
@@ -496,18 +840,18 @@ Computes the CDF of the maximum of k selections from this dist.
 
 </details>
 
-### Pdf
+### Pdf()
 
 Represents a probability density function (PDF).
 
-#### <details>
-  <summary>.density(x)</summary>
+**@Methods:**
+
+<details>
+  <summary><b>.density(x)</b></summary>
 
 Evaluates this pdf at x.
 
-This method needs implement by children class
-
-if not there is an <code>UnimplementedMethodException</code> would be throw
+This method needs implement by children class, if not there is an <code>UnimplementedMethodException</code> would be throw when the method is called
 
 **@Params:**
 
@@ -520,8 +864,8 @@ if not there is an <code>UnimplementedMethodException</code> would be throw
 
 </details>
 
-#### <details>
-  <summary>.makePmf(xs, name)</summary>
+<details>
+  <summary><b>.makePmf(xs, name)</b></summary>
 
 Makes a discrete version of this pdf, evaluated at xs.
 
@@ -536,12 +880,24 @@ Makes a discrete version of this pdf, evaluated at xs.
 
 </details>
 
-### Suite
+### Suite(values, name)
 
 Represents a suite of hypotheses and their probabilities.
 
-#### <details>
-  <summary>.update(data)</summary>
+**@Params:**
+
+| param  | type                    | description        |
+|--------|-------------------------|--------------------|
+| values | string | array | object | sequence of values |
+| name   | string                  | sequence of values |
+
+
+**@Methods:**
+
+**Important:** This class inherits from **Pmf**, so you can use all methods of the parent class.
+
+<details>
+  <summary><b>.update(data)</b></summary>
 
 Updates each hypothesis based on the data.
 
@@ -556,8 +912,8 @@ Updates each hypothesis based on the data.
 
 </details>
 
-#### <details>
-  <summary>.logUpdate(data)</summary>
+<details>
+  <summary><b>.logUpdate(data)</b></summary>
 
 Updates a suite of hypotheses based on new data.
 
@@ -574,8 +930,8 @@ Note: unlike Update, LogUpdate does not normalize.
 
 </details>
 
-#### <details>
-  <summary>.updateSet(dataset)</summary>
+<details>
+  <summary><b>.updateSet(dataset)</b></summary>
 
 Updates each hypothesis based on the dataset.
 
@@ -596,8 +952,8 @@ Modifies the suite directly; if you want to keep the original, make a copy.
 
 </details>
 
-#### <details>
-  <summary>.logUpdateSet(dataset)</summary>
+<details>
+  <summary><b>.logUpdateSet(dataset)</b></summary>
 
 Updates each hypothesis based on the dataset.
 
@@ -612,8 +968,8 @@ Modifies the suite directly; if you want to keep the original, make a copy.
 
 </details>
 
-#### <details>
-  <summary>.likelihood(data, hypo)</summary>
+<details>
+  <summary><b>.likelihood(data, hypo)</b></summary>
 
 Computes the likelihood of the data under the hypothesis.
 
@@ -633,8 +989,8 @@ if not there is an <code>UnimplementedMethodException</code> would be throw
 
 </details>
 
-#### <details>
-  <summary>.logLikelihood(data, hypo)</summary>
+<details>
+  <summary><b>.logLikelihood(data, hypo)</b></summary>
 
 Computes the log likelihood of the data under the hypothesis.
 
@@ -654,8 +1010,8 @@ if not there is an <code>UnimplementedMethodException</code> would be throw
 
 </details>
 
-#### <details>
-  <summary>.makeOdds()</summary>
+<details>
+  <summary><b>.makeOdds()</b></summary>
 
 Transforms from probabilities to odds.
 
@@ -663,21 +1019,33 @@ Values with prob=0 are removed.
 
 </details>
 
-#### <details>
-  <summary>.makeProbs()</summary>
+<details>
+  <summary><b>.makeProbs()</b></summary>
 
 Transforms from odds to probabilities.
 
 </details>
 
-### Hist
+### Hist(values, name)
 
 Represents a histogram, which is a map from values to frequencies.
 
 Values can be any hashable type; frequencies are integer counters.
 
-#### <details>
-  <summary>.freq(x)</summary>
+**@Params:**
+
+| param  | type                    | description        |
+|--------|-------------------------|--------------------|
+| values | string | array | object | sequence of values |
+| name   | string                  | sequence of values |
+
+
+**@Methods:**
+
+**Important:** This class inherits from **DictWrapper**, so you can use all methods of the parent class.
+
+<details>
+  <summary><b>.freq(x)</b></summary>
 
 Gets the frequency associated with the value x.
 
@@ -692,15 +1060,15 @@ Gets the frequency associated with the value x.
 
 </details>
 
-#### <details>
-  <summary>.freqs(xs)</summary>
+<details>
+  <summary><b>.freqs(xs)</b></summary>
 
 Gets frequencies for a sequence of values.
 
 </details>
 
-#### <details>
-  <summary>.isSubset(other)</summary>
+<details>
+  <summary><b>.isSubset(other)</b></summary>
 
 Checks whether the values in this histogram are a subset of
 
@@ -708,39 +1076,61 @@ the values in the given histogram.
 
 </details>
 
-#### <details>
-  <summary>.subtract(other)</summary>
+<details>
+  <summary><b>.subtract(other)</b></summary>
 
 Subtracts the values in the given histogram from this histogram.
 
 </details>
 
-### Interpolater
+### Interpolater(xs, ys)
 
 Represents a mapping between sorted sequences; performs linear interp.
 
-#### <details>
-  <summary>.lookup(x)</summary>
+**@Params:**
+
+| param | type  | description |
+|-------|-------|-------------|
+| xs    | array | sorted list |
+| ys    | array | sorted list |
+
+
+**@Methods:**
+
+<details>
+  <summary><b>.lookup(x)</b></summary>
 
 Looks up x and returns the corresponding value of y.
 
 </details>
 
-#### <details>
-  <summary>.reverse(x)</summary>
+<details>
+  <summary><b>.reverse(x)</b></summary>
 
 Looks up y and returns the corresponding value of x.
 
 </details>
 
-### Joint
+### Joint(values, name)
 
 Represents a joint distribution.
 
 The values are sequences (usually tuples)
 
-#### <details>
-  <summary>.marginal(i, name)</summary>
+**@Params:**
+
+| param  | type                    | description        |
+|--------|-------------------------|--------------------|
+| values | string | array | object | sequence of values |
+| name   | string                  | sequence of values |
+
+
+**@Methods:**
+
+**Important:** This class inherits from **Pmf**, so you can use all methods of the parent class.
+
+<details>
+  <summary><b>.marginal(i, name)</b></summary>
 
 Gets the marginal distribution of the indicated variable.
 
@@ -755,8 +1145,8 @@ Gets the marginal distribution of the indicated variable.
 
 </details>
 
-#### <details>
-  <summary>.conditional(i, j, val, name)</summary>
+<details>
+  <summary><b>.conditional(i, j, val, name)</b></summary>
 
 Gets the conditional distribution of the indicated variable.
 
@@ -775,8 +1165,8 @@ Distribution of vs[i], conditioned on vs[j] = val.
 
 </details>
 
-#### <details>
-  <summary>.maxLikeInterval(percentage = 90)</summary>
+<details>
+  <summary><b>.maxLikeInterval(percentage = 90)</b></summary>
 
 Returns the maximum-likelihood credible interval.
 
@@ -795,12 +1185,16 @@ with the highest likelihoods.
 
 </details>
 
-### GaussianPdf
+### GaussianPdf()
 
 Represents the PDF of a Gaussian distribution.
 
-#### <details>
-  <summary>.constructor(mu, sigma)</summary>
+**@Methods:**
+
+**Important:** This class inherits from **Pdf**, so you can use all methods of the parent class.
+
+<details>
+  <summary><b>.constructor(mu, sigma)</b></summary>
 
 Constructs a Gaussian Pdf with given mu and sigma.
 
@@ -814,8 +1208,8 @@ Constructs a Gaussian Pdf with given mu and sigma.
 
 </details>
 
-#### <details>
-  <summary>.density(x)</summary>
+<details>
+  <summary><b>.density(x)</b></summary>
 
 Evaluates this Pdf at x.
 
@@ -823,16 +1217,13 @@ Evaluates this Pdf at x.
 
 </details>
 
-### GaussianKde
+### GaussianKde()
 
 TODO: implemente this class.
 
-### EstimatedPdf
+### EstimatedPdf(sample)
 
 Represents a PDF estimated by KDE.
-
-#### <details>
-  <summary>.constructor(sample)</summary>
 
 Estimates the density function based on a sample.
 
@@ -843,10 +1234,12 @@ Estimates the density function based on a sample.
 | sample | array | sequence of data |
 
 
-</details>
+**@Methods:**
 
-#### <details>
-  <summary>.density(x)</summary>
+**Important:** This class inherits from **Pdf**, so you can use all methods of the parent class.
+
+<details>
+  <summary><b>.density(x)</b></summary>
 
 Evaluates this Pdf at x.
 
@@ -866,7 +1259,8 @@ These functions can be imported by the same way following:
 import { odds, probability, percentile } from 'think-bayes/helpers';
 ```
 
-### odds(p)
+<details>
+  <summary><b>odds(p)</b></summary>
 
 Computes odds for a given probability.
 
@@ -887,7 +1281,10 @@ to be infinity, so that's what this function does.
 
 **@Returns:** float odds
 
-### probability(o)
+</details>
+
+<details>
+  <summary><b>probability(o)</b></summary>
 
 Computes the probability corresponding to given odds.
 
@@ -902,7 +1299,10 @@ Computes the probability corresponding to given odds.
 
 **@Returns:** float probability
 
-### probability2(yes, no)
+</details>
+
+<details>
+  <summary><b>probability2(yes, no)</b></summary>
 
 Computes the probability corresponding to given odds.
 
@@ -916,7 +1316,10 @@ Computes the probability corresponding to given odds.
 | no    | number | int or float odds in favor |
 
 
-### percentile(pmf, percentage)
+</details>
+
+<details>
+  <summary><b>percentile(pmf, percentage)</b></summary>
 
 Computes a percentile of a given Pmf.
 
@@ -928,7 +1331,10 @@ Computes a percentile of a given Pmf.
 | percentage | number | float 0-100 |
 
 
-### credibleInterval(pmf, percentage = 90)
+</details>
+
+<details>
+  <summary><b>credibleInterval(pmf, percentage = 90)</b></summary>
 
 Computes a credible interval for a given distribution.
 
@@ -944,7 +1350,10 @@ If percentage=90, computes the 90% CI.
 
 **@Returns:** sequence of two floats, low and high
 
-### pmfProbLess(pmf1, pmf2)
+</details>
+
+<details>
+  <summary><b>pmfProbLess(pmf1, pmf2)</b></summary>
 
 Probability that a value from pmf1 is less than a value from pmf2.
 
@@ -958,7 +1367,10 @@ Probability that a value from pmf1 is less than a value from pmf2.
 
 **@Returns:** float probability
 
-### pmfProbGreater(pmf1, pmf2)
+</details>
+
+<details>
+  <summary><b>pmfProbGreater(pmf1, pmf2)</b></summary>
 
 Probability that a value from pmf1 is greater than a value from pmf2.
 
@@ -972,7 +1384,10 @@ Probability that a value from pmf1 is greater than a value from pmf2.
 
 **@Returns:** float probability
 
-### pmfProbEqual(pmf1, pmf2)
+</details>
+
+<details>
+  <summary><b>pmfProbEqual(pmf1, pmf2)</b></summary>
 
 Probability that a value from pmf1 equals a value from pmf2.
 
@@ -986,7 +1401,10 @@ Probability that a value from pmf1 equals a value from pmf2.
 
 **@Returns:** float probability
 
-### randomSum(dists)
+</details>
+
+<details>
+  <summary><b>randomSum(dists)</b></summary>
 
 Chooses a random value from each dist and returns the sum.
 
@@ -999,7 +1417,10 @@ Chooses a random value from each dist and returns the sum.
 
 **@Returns:** numerical sum
 
-### sampleSum(dists, n)
+</details>
+
+<details>
+  <summary><b>sampleSum(dists, n)</b></summary>
 
 Draws a sample of sums from a list of distributions.
 
@@ -1013,7 +1434,10 @@ Draws a sample of sums from a list of distributions.
 
 **@Returns:** new Pmf of sums
 
-### evalGaussianPdf(x, mu, sigma)
+</details>
+
+<details>
+  <summary><b>evalGaussianPdf(x, mu, sigma)</b></summary>
 
 Computes the unnormalized PDF of the normal distribution.
 
@@ -1028,7 +1452,10 @@ Computes the unnormalized PDF of the normal distribution.
 
 **@Returns:** float probability density
 
-### makeGaussianPdf(mu, sigma, numSigmas, n = 201)
+</details>
+
+<details>
+  <summary><b>makeGaussianPdf(mu, sigma, numSigmas, n = 201)</b></summary>
 
 Makes a PMF discrete approx to a Gaussian distribution.
 
@@ -1044,13 +1471,19 @@ Makes a PMF discrete approx to a Gaussian distribution.
 
 **@Returns:** normalized Pmf
 
-### evalBinomialPmf(k, n, p)
+</details>
+
+<details>
+  <summary><b>evalBinomialPmf(k, n, p)</b></summary>
 
 Evaluates the binomial pmf.
 
 **@Returns:** the probabily of k successes in n trials with probability p.
 
-### evalPoissonPmf(k, lam)
+</details>
+
+<details>
+  <summary><b>evalPoissonPmf(k, lam)</b></summary>
 
 Computes the Poisson PMF.
 
@@ -1063,5 +1496,7 @@ Computes the Poisson PMF.
 
 
 **@Returns:** float probability
+
+</details>
 
 

@@ -1,10 +1,11 @@
-/**
- * An object that contains a dictionary.
- */
-
 import { ValueError, shallowClone, printTable } from '../utils';
 import math from '../math';
 
+/**
+ * An base class for generation an object contains a dictionary.
+ * @param {string|array|object} values sequence of values
+ * @param {string} name sequence of values
+ */
 export default class DictWrapper {
   constructor(values, name) {
     this.name = name;
@@ -235,7 +236,7 @@ export default class DictWrapper {
 
   /**
    * Sets the dictionary.
-   * @param {map/object} d
+   * @param {map|object} d
    */
   setDict(d) {
     const isObject = o => typeof o === 'object';

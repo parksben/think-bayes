@@ -1,11 +1,12 @@
-/**
- * Represents a suite of hypotheses and their probabilities.
- */
-
 import Pmf from '../Pmf';
 import { UnimplementedMethodException } from '../utils';
 import { odds, probability } from '../helpers';
 
+/**
+ * Represents a suite of hypotheses and their probabilities.
+ * @param {string|array|object} values sequence of values
+ * @param {string} name sequence of values
+ */
 export default class Suite extends Pmf {
   /**
    * Updates each hypothesis based on the data.

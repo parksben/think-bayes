@@ -81,6 +81,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+/**
+ * Represents a probability mass function.
+ * Values can be any hashable type; probabilities are floating-point.
+ * Pmfs are not necessarily normalized.
+ * @param {string|array|object} values sequence of values
+ * @param {string} name sequence of values
+ */
 var Pmf =
 /*#__PURE__*/
 function (_DictWrapper) {
@@ -308,7 +315,7 @@ function (_DictWrapper) {
     }
     /**
      * Computes the variance of a PMF.
-     * @param {number} mu the point around which the variance is computed; if omitted, computes the mean
+     * @param {number} miu the point around which the variance is computed; if omitted, computes the mean
      * @returns float variance
      */
 
