@@ -9,4 +9,4 @@ var _decimal = require("decimal.js");
 
 var _default = _decimal.Decimal;
 exports.default = _default;
-//# sourceMappingURL=Demical.js.map
+//# sourceMappingURL=Decimal.js.map

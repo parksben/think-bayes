@@ -1,7 +1,7 @@
 // @create-index
 
 export { default as Cdf } from './Cdf';
-export { default as Demical } from './Demical.js';
+export { default as Decimal } from './Decimal.js';
 export { default as DictWrapper } from './DictWrapper';
 export { default as EstimatedPdf } from './EstimatedPdf';
 export { default as GaussianKde } from './GaussianKde';

@@ -53,6 +53,8 @@ pmf.print();
 // | Bowl2 | 0.4  |
 ```
 
+In addition, here are some simple [demos](./demo) you can refer directly to resolve some classic problems of probability and statistics.
+
 ## Algorithm Classes
 
 This library provides some **ES Classes** following for calculations related to probability and statistics.
@@ -1500,3 +1502,15 @@ Computes the Poisson PMF.
 </details>
 
 
+
+## Q&A
+
+### How to reduce the precision loss caused by the calculation of float point number in javascript?
+
+This library use **[decimal.js](http://mikemcl.github.io/decimal.js/)** to handle the problem what calculation of float point number, in the same way, you can use it in this library:
+
+```js
+import { Decimal } from 'think-bayes';
+
+Decimal.add(0.1, 0.2).toNumber() === 0.3; // true
+```

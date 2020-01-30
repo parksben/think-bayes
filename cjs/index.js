@@ -9,10 +9,10 @@ Object.defineProperty(exports, "Cdf", {
     return _Cdf.default;
   }
 });
-Object.defineProperty(exports, "Demical", {
+Object.defineProperty(exports, "Decimal", {
   enumerable: true,
   get: function get() {
-    return _Demical.default;
+    return _Decimal.default;
   }
 });
 Object.defineProperty(exports, "DictWrapper", {
@@ -102,7 +102,7 @@ Object.defineProperty(exports, "utils", {
 
 var _Cdf = _interopRequireDefault(require("./Cdf"));
 
-var _Demical = _interopRequireDefault(require("./Demical.js"));
+var _Decimal = _interopRequireDefault(require("./Decimal.js"));
 
 var _DictWrapper = _interopRequireDefault(require("./DictWrapper"));
 
