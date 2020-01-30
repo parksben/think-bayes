@@ -36,10 +36,18 @@
   },
   "keywords": [
     "think-bayes",
+    "think bayes",
+    "bayes",
+    "PMF",
+    "PDF",
+    "CDF",
+    "Suite",
+    "Hist",
+    "Joint",
+    "KDE",
     "probability",
     "statistics",
-    "algorithm",
-    "library"
+    "algorithm"
   ],
   "author": "parksben",
   "license": "MIT",
