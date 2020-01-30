@@ -78,7 +78,8 @@ This library provides some **Utility Functions** following for calculations rela
 These functions can be imported by the same way following:
 
 ```js
-import { odds, probability, percentile } from 'think-bayes/helpers';
+import { Util } from 'think-bayes';
+const { odds, probability, percentile } = Util;
 ```
 
 {{HELPER_CONTENTS}}

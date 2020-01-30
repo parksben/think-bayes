@@ -29,7 +29,7 @@ require("core-js/modules/web.dom-collections.iterator");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.makeSuiteFromCdf = exports.makeSuiteFromHist = exports.makeSuiteFromList = exports.makeSuiteFromDict = exports.makeCdfFromPmf = exports.makeCdfFromList = exports.makeCdfFromHist = exports.makeCdfFromDict = exports.makeCdfFromItems = exports.makeUniformPmf = exports.makeMixture = exports.makePmfFromCdf = exports.makePmfFromHist = exports.makePmfFromItems = exports.makePmfFromDict = exports.makePmfFromList = exports.makeHistFromDict = exports.makeHistFromList = exports.makeJoint = void 0;
+exports.default = exports.makeSuiteFromCdf = exports.makeSuiteFromHist = exports.makeSuiteFromList = exports.makeSuiteFromDict = exports.makeCdfFromPmf = exports.makeCdfFromList = exports.makeCdfFromHist = exports.makeCdfFromDict = exports.makeCdfFromItems = exports.makeUniformPmf = exports.makeMixture = exports.makePmfFromCdf = exports.makePmfFromHist = exports.makePmfFromItems = exports.makePmfFromDict = exports.makePmfFromList = exports.makeHistFromDict = exports.makeHistFromList = exports.makeJoint = void 0;
 
 var _Cdf = _interopRequireDefault(require("./Cdf"));
 
@@ -157,7 +157,7 @@ var makeHistFromList = function makeHistFromList(t, name) {
 };
 /**
  * Makes a histogram from a map from values to frequencies.
- * @param {object/map} d dictionary that maps values to frequencies
+ * @param {object|map} d dictionary that maps values to frequencies
  * @param {string} name string name for this histogram
  * @returns Hist object
  */
@@ -187,7 +187,7 @@ var makePmfFromList = function makePmfFromList(t, name) {
 };
 /**
  * Makes a PMF from a map from values to probabilities.
- * @param {object/map} d dictionary that maps values to probabilities
+ * @param {object|map} d dictionary that maps values to probabilities
  * @param {string} name string name for this PMF
  * * @returns Pmf object
  */
@@ -442,7 +442,7 @@ var makeCdfFromItems = function makeCdfFromItems(items) {
 };
 /**
  * Makes a CDF from a dictionary that maps values to frequencies.
- * @param {object/mapt} d dictionary that maps values to frequencies.
+ * @param {object|map} d dictionary that maps values to frequencies.
  * @param {string} name string name for the data.
  * @returns Cdf object
  */
@@ -495,7 +495,7 @@ var makeCdfFromPmf = function makeCdfFromPmf(pmf, name) {
 };
 /**
  * Makes a suite from a map from values to probabilities.
- * @param {object/map} d dictionary that maps values to probabilities
+ * @param {object|map} d dictionary that maps values to probabilities
  * @param {string} name string name for this suite
  * @returns Suite object
  */
@@ -581,4 +581,26 @@ var makeSuiteFromCdf = function makeSuiteFromCdf(cdf, name) {
 };
 
 exports.makeSuiteFromCdf = makeSuiteFromCdf;
+var _default = {
+  makeJoint: makeJoint,
+  makeHistFromList: makeHistFromList,
+  makeHistFromDict: makeHistFromDict,
+  makePmfFromList: makePmfFromList,
+  makePmfFromDict: makePmfFromDict,
+  makePmfFromItems: makePmfFromItems,
+  makePmfFromHist: makePmfFromHist,
+  makePmfFromCdf: makePmfFromCdf,
+  makeMixture: makeMixture,
+  makeUniformPmf: makeUniformPmf,
+  makeCdfFromItems: makeCdfFromItems,
+  makeCdfFromDict: makeCdfFromDict,
+  makeCdfFromHist: makeCdfFromHist,
+  makeCdfFromList: makeCdfFromList,
+  makeCdfFromPmf: makeCdfFromPmf,
+  makeSuiteFromDict: makeSuiteFromDict,
+  makeSuiteFromList: makeSuiteFromList,
+  makeSuiteFromHist: makeSuiteFromHist,
+  makeSuiteFromCdf: makeSuiteFromCdf
+};
+exports.default = _default;
 //# sourceMappingURL=convertors.js.map

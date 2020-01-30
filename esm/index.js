@@ -12,6 +12,7 @@ export { default as Joint } from './Joint';
 export { default as Pdf } from './Pdf';
 export { default as Pmf } from './Pmf';
 export { default as Suite } from './Suite';
+export { default as Util } from './Util.js';
 export { default as convertors } from './convertors.js';
 export { default as helpers } from './helpers.js';
 export { default as math } from './math.js';

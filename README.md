@@ -1262,7 +1262,8 @@ This library provides some **Utility Functions** following for calculations rela
 These functions can be imported by the same way following:
 
 ```js
-import { odds, probability, percentile } from 'think-bayes/helpers';
+import { Util } from 'think-bayes';
+const { odds, probability, percentile } = Util;
 ```
 
 <details>
@@ -1502,6 +1503,320 @@ Computes the Poisson PMF.
 
 
 **@Returns:** float probability
+
+</details>
+
+<details>
+  <summary><b>makeJoint(pmf1, pmf2)</b></summary>
+
+Joint distribution of values from pmf1 and pmf2.
+
+**@Params:**
+
+| param | type | description |
+|-------|------|-------------|
+| pmf1  | pmf  | Pmf object  |
+| pmf2  | pmf  | Pmf object  |
+
+
+**@Returns:** Joint pmf of value pairs
+
+</details>
+
+<details>
+  <summary><b>makeHistFromList(t, name)</b></summary>
+
+Makes a histogram from an unsorted sequence of values.
+
+**@Params:**
+
+| param | type   | description                    |
+|-------|--------|--------------------------------|
+| t     | array  | sequence of numbers            |
+| name  | string | string name for this histogram |
+
+
+**@Returns:** Hist object
+
+</details>
+
+<details>
+  <summary><b>makeHistFromDict(d, name)</b></summary>
+
+Makes a histogram from a map from values to frequencies.
+
+**@Params:**
+
+| param | type         | description                                |
+|-------|--------------|--------------------------------------------|
+| d     | object | map | dictionary that maps values to frequencies |
+| name  | string       | string name for this histogram             |
+
+
+**@Returns:** Hist object
+
+</details>
+
+<details>
+  <summary><b>makePmfFromList(t, name)</b></summary>
+
+Makes a PMF from an unsorted sequence of values.
+
+**@Params:**
+
+| param | type   | description              |
+|-------|--------|--------------------------|
+| t     | array  | sequence of numbers      |
+| name  | string | string name for this PMF |
+
+
+**@Returns:** Pmf object
+
+</details>
+
+<details>
+  <summary><b>makePmfFromDict(d, name)</b></summary>
+
+Makes a PMF from a map from values to probabilities.
+
+**@Params:**
+
+| param | type         | description                                    |
+|-------|--------------|------------------------------------------------|
+| d     | object | map | dictionary that maps values to probabilities   |
+| name  | string       | string name for this PMF * @returns Pmf object |
+
+
+</details>
+
+<details>
+  <summary><b>makePmfFromItems(t, name)</b></summary>
+
+Makes a PMF from a sequence of value-probability pairs
+
+**@Params:**
+
+| param | type   | description                                    |
+|-------|--------|------------------------------------------------|
+| t     | array  | sequence of value-probability pairs            |
+| name  | string | string name for this PMF * @returns Pmf object |
+
+
+</details>
+
+<details>
+  <summary><b>makePmfFromHist(hist, name)</b></summary>
+
+Makes a normalized PMF from a Hist object.
+
+**@Params:**
+
+| param | type   | description |
+|-------|--------|-------------|
+| hist  | hist   | Hist object |
+| name  | string | string name |
+
+
+**@Returns:** Pmf object
+
+</details>
+
+<details>
+  <summary><b>makePmfFromCdf(cdf, name)</b></summary>
+
+Makes a normalized Pmf from a Cdf object.
+
+**@Params:**
+
+| param | type   | description                 |
+|-------|--------|-----------------------------|
+| cdf   | cdf    | Cdf object                  |
+| name  | string | string name for the new Pmf |
+
+
+**@Returns:** Pmf object
+
+</details>
+
+<details>
+  <summary><b>makeMixture(metapmf, name = 'mix')</b></summary>
+
+Make a mixture distribution.
+
+**@Params:**
+
+| param   | type   | description                       |
+|---------|--------|-----------------------------------|
+| metapmf | pmf    | Pmf that maps from Pmfs to probs. |
+| name    | string | string name for the new Pmf       |
+
+
+**@Returns:** Pmf object
+
+</details>
+
+<details>
+  <summary><b>makeUniformPmf(low, high, n)</b></summary>
+
+Make a uniform Pmf.
+
+**@Params:**
+
+| param | type   | description               |
+|-------|--------|---------------------------|
+| low   | number | lowest value (inclusive)  |
+| high  | number | highest value (inclusize) |
+| n     | number | number of values          |
+
+
+</details>
+
+<details>
+  <summary><b>makeCdfFromItems(items, name = '')</b></summary>
+
+Makes a cdf from an unsorted sequence of (value, frequency) pairs.
+
+**@Params:**
+
+| param | type   | description                                   |
+|-------|--------|-----------------------------------------------|
+| items | array  | unsorted sequence of (value, frequency) pairs |
+| name  | string | string name for this CDF                      |
+
+
+**@Returns:** cdf: list of (value, fraction) pairs
+
+</details>
+
+<details>
+  <summary><b>makeCdfFromDict(d, name)</b></summary>
+
+Makes a CDF from a dictionary that maps values to frequencies.
+
+**@Params:**
+
+| param | type         | description                                 |
+|-------|--------------|---------------------------------------------|
+| d     | object | map | dictionary that maps values to frequencies. |
+| name  | string       | string name for the data.                   |
+
+
+**@Returns:** Cdf object
+
+</details>
+
+<details>
+  <summary><b>makeCdfFromHist(hist, name)</b></summary>
+
+Makes a CDF from a Hist object.
+
+**@Params:**
+
+| param | type   | description               |
+|-------|--------|---------------------------|
+| hist  | hist   | Hist object               |
+| name  | string | string name for the data. |
+
+
+**@Returns:** Cdf object
+
+</details>
+
+<details>
+  <summary><b>makeCdfFromList(seq, name)</b></summary>
+
+Creates a CDF from an unsorted sequence.
+
+**@Params:**
+
+| param | type   | description                          |
+|-------|--------|--------------------------------------|
+| seq   | array  | unsorted sequence of sortable values |
+| name  | string | string name for the cdf              |
+
+
+**@Returns:** Cdf object
+
+</details>
+
+<details>
+  <summary><b>makeCdfFromPmf(pmf, name)</b></summary>
+
+Makes a CDF from a Pmf object.
+
+**@Params:**
+
+| param | type   | description               |
+|-------|--------|---------------------------|
+| pmf   | pmf    | Pmf object                |
+| name  | string | string name for the data. |
+
+
+**@Returns:** Cdf object
+
+</details>
+
+<details>
+  <summary><b>makeSuiteFromDict(d, name)</b></summary>
+
+Makes a suite from a map from values to probabilities.
+
+**@Params:**
+
+| param | type         | description                                  |
+|-------|--------------|----------------------------------------------|
+| d     | object | map | dictionary that maps values to probabilities |
+| name  | string       | string name for this suite                   |
+
+
+**@Returns:** Suite object
+
+</details>
+
+<details>
+  <summary><b>makeSuiteFromList(t, name)</b></summary>
+
+Makes a suite from an unsorted sequence of values.
+
+**@Params:**
+
+| param | type   | description                |
+|-------|--------|----------------------------|
+| t     | array  | sequence of numbers        |
+| name  | string | string name for this suite |
+
+
+</details>
+
+<details>
+  <summary><b>makeSuiteFromHist(hist, name)</b></summary>
+
+Makes a normalized suite from a Hist object.
+
+**@Params:**
+
+| param | type   | description |
+|-------|--------|-------------|
+| hist  | hist   | Hist object |
+| name  | string | string name |
+
+
+</details>
+
+<details>
+  <summary><b>makeSuiteFromCdf(cdf, name)</b></summary>
+
+Makes a normalized Suite from a Cdf object.
+
+**@Params:**
+
+| param | type   | description                   |
+|-------|--------|-------------------------------|
+| cdf   | cdf    | Cdf object                    |
+| name  | string | string name for the new Suite |
+
+
+**@Returns:** Suite object
 
 </details>
 

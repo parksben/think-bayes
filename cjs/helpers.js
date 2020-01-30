@@ -29,7 +29,7 @@ require("core-js/modules/web.dom-collections.iterator");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.evalPoissonPmf = exports.evalBinomialPmf = exports.makeGaussianPdf = exports.evalGaussianPdf = exports.sampleSum = exports.randomSum = exports.pmfProbEqual = exports.pmfProbGreater = exports.pmfProbLess = exports.credibleInterval = exports.percentile = exports.probability2 = exports.probability = exports.odds = void 0;
+exports.default = exports.evalPoissonPmf = exports.evalBinomialPmf = exports.makeGaussianPdf = exports.evalGaussianPdf = exports.sampleSum = exports.randomSum = exports.pmfProbEqual = exports.pmfProbGreater = exports.pmfProbLess = exports.credibleInterval = exports.percentile = exports.probability2 = exports.probability = exports.odds = void 0;
 
 var _utils = require("./utils");
 
@@ -480,4 +480,21 @@ var evalPoissonPmf = function evalPoissonPmf(k, lam) {
 };
 
 exports.evalPoissonPmf = evalPoissonPmf;
+var _default = {
+  odds: odds,
+  probability: probability,
+  probability2: probability2,
+  percentile: percentile,
+  credibleInterval: credibleInterval,
+  pmfProbLess: pmfProbLess,
+  pmfProbGreater: pmfProbGreater,
+  pmfProbEqual: pmfProbEqual,
+  randomSum: randomSum,
+  sampleSum: sampleSum,
+  evalGaussianPdf: evalGaussianPdf,
+  makeGaussianPdf: makeGaussianPdf,
+  evalBinomialPmf: evalBinomialPmf,
+  evalPoissonPmf: evalPoissonPmf
+};
+exports.default = _default;
 //# sourceMappingURL=helpers.js.map

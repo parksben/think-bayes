@@ -5,7 +5,6 @@ const { printTable } = require('../cjs/utils');
 
 const sourceMapping = [
   {
-    title: 'Algorithm classes',
     markup: 'CLASS_CONTENTS',
     files: [
       { title: 'DictWrapper', source: 'esm/DictWrapper/index.js' },
@@ -22,9 +21,8 @@ const sourceMapping = [
     ],
   },
   {
-    title: 'Helpers',
     markup: 'HELPER_CONTENTS',
-    files: [{ source: 'esm/helpers.js' }],
+    files: [{ source: 'esm/helpers.js' }, { source: 'esm/convertors.js' }],
   },
 ];
 

@@ -204,3 +204,20 @@ export const evalBinomialPmf = (k, n, p) => binomialPmf(k, n, p);
  * @returns float probability
  */
 export const evalPoissonPmf = (k, lam) => poissonPmf(k, lam);
+
+export default {
+  odds,
+  probability,
+  probability2,
+  percentile,
+  credibleInterval,
+  pmfProbLess,
+  pmfProbGreater,
+  pmfProbEqual,
+  randomSum,
+  sampleSum,
+  evalGaussianPdf,
+  makeGaussianPdf,
+  evalBinomialPmf,
+  evalPoissonPmf,
+};

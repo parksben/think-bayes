@@ -38,7 +38,7 @@ export const makeHistFromList = (t, name) => {
 
 /**
  * Makes a histogram from a map from values to frequencies.
- * @param {object/map} d dictionary that maps values to frequencies
+ * @param {object|map} d dictionary that maps values to frequencies
  * @param {string} name string name for this histogram
  * @returns Hist object
  */
@@ -62,7 +62,7 @@ export const makePmfFromList = (t, name) => {
 
 /**
  * Makes a PMF from a map from values to probabilities.
- * @param {object/map} d dictionary that maps values to probabilities
+ * @param {object|map} d dictionary that maps values to probabilities
  * @param {string} name string name for this PMF
  * * @returns Pmf object
  */
@@ -171,7 +171,7 @@ export const makeCdfFromItems = (items, name = '') => {
 
 /**
  * Makes a CDF from a dictionary that maps values to frequencies.
- * @param {object/mapt} d dictionary that maps values to frequencies.
+ * @param {object|map} d dictionary that maps values to frequencies.
  * @param {string} name string name for the data.
  * @returns Cdf object
  */
@@ -208,7 +208,7 @@ export const makeCdfFromPmf = (pmf, name) =>
 
 /**
  * Makes a suite from a map from values to probabilities.
- * @param {object/map} d dictionary that maps values to probabilities
+ * @param {object|map} d dictionary that maps values to probabilities
  * @param {string} name string name for this suite
  * @returns Suite object
  */
@@ -256,4 +256,26 @@ export const makeSuiteFromCdf = (cdf, name) => {
   }
 
   return suite;
+};
+
+export default {
+  makeJoint,
+  makeHistFromList,
+  makeHistFromDict,
+  makePmfFromList,
+  makePmfFromDict,
+  makePmfFromItems,
+  makePmfFromHist,
+  makePmfFromCdf,
+  makeMixture,
+  makeUniformPmf,
+  makeCdfFromItems,
+  makeCdfFromDict,
+  makeCdfFromHist,
+  makeCdfFromList,
+  makeCdfFromPmf,
+  makeSuiteFromDict,
+  makeSuiteFromList,
+  makeSuiteFromHist,
+  makeSuiteFromCdf,
 };

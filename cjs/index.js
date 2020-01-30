@@ -75,6 +75,12 @@ Object.defineProperty(exports, "Suite", {
     return _Suite.default;
   }
 });
+Object.defineProperty(exports, "Util", {
+  enumerable: true,
+  get: function get() {
+    return _Util.default;
+  }
+});
 Object.defineProperty(exports, "convertors", {
   enumerable: true,
   get: function get() {
@@ -123,6 +129,8 @@ var _Pdf = _interopRequireDefault(require("./Pdf"));
 var _Pmf = _interopRequireDefault(require("./Pmf"));
 
 var _Suite = _interopRequireDefault(require("./Suite"));
+
+var _Util = _interopRequireDefault(require("./Util.js"));
 
 var _convertors = _interopRequireDefault(require("./convertors.js"));
 
