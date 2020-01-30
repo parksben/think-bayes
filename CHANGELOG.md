@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3-alpha.6](https://github.com/parksben/think-bayes/compare/v0.1.3-alpha.5...v0.1.3-alpha.6) (2020-01-30)
+
 ### [0.1.3-alpha.5](https://github.com/parksben/think-bayes/compare/v0.1.3-alpha.4...v0.1.3-alpha.5) (2020-01-30)
 
 
