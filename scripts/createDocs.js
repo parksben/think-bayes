@@ -59,7 +59,7 @@ classDocSrc.forEach(({ title, ast }) => {
     const method = code.match(/^[^(]+\([^)]*?\)/)[0];
 
     if (!/^_/.test(method)) {
-      itemDoc += `#### .${method}\n\n`;
+      itemDoc += `<details>\n  <summary>#### .${method}</summary>\n\n`;
       itemDoc +=
         description.full
           .replace(/<\/?p>/g, '')
@@ -83,6 +83,8 @@ classDocSrc.forEach(({ title, ast }) => {
       if (returns) {
         itemDoc += `**@Returns:** ${returns.string}\n\n`;
       }
+
+      itemDoc += '</details>\n\n';
     }
   });
 
@@ -94,7 +96,6 @@ const helperDocSrc = astList.filter(x => x.markup === 'HELPER_CONTENTS');
 helperDocSrc.forEach(({ title, ast }) => {
   let itemDoc = '';
   ast.forEach(({ tags, code, description }) => {
-    // const method = code.match(/^[^(]+\([^)]*?\)/)[0];
     const method = code
       .match(/^export\sconst\s([^=]+\s\=\s.+\s)\=>\s/)[1]
       .replace(/\s\=\s\(?([^)]+)\)?\s/, '($1)');

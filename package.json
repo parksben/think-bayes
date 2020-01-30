@@ -1,7 +1,7 @@
 {
   "name": "think-bayes",
   "version": "0.1.0",
-  "description": "An algorithm framework of probability and statistics for ES6+ and CommonJS environment.",
+  "description": "An algorithm framework of probability and statistics for browser and Node.js environment.",
   "scripts": {
     "build:index": "npx rimraf esm/index.js && npx create-index --ignoreUnsafe esm",
     "build:module": "npx rimraf cjs && npx babel esm --copy-files --source-maps --extensions .js --out-dir cjs",
