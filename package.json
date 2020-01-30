@@ -8,7 +8,7 @@
     "build:readme": "node scripts/createDocs.js",
     "build": "npm run build:index && npm run build:module && npm run build:readme",
     "release": "npx standard-version",
-    "prepublishOnly": "npm run build && npm run release",
+    "prepublishOnly": "npm run build",
     "run-demo": "npx babel-node"
   },
   "dependencies": {
