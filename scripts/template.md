@@ -1,5 +1,9 @@
 # think-bayes
 
+![npm](https://img.shields.io/npm/l/think-bayes.svg)
+![npm](https://img.shields.io/npm/dt/think-bayes.svg)
+![npm](https://img.shields.io/npm/v/think-bayes/latest.svg)
+
 An algorithm collection of probability and statistics for **browser** and **Node.js** environment.
 
 In progress...

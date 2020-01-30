@@ -7,6 +7,8 @@
     "build:module": "npx rimraf cjs && npx babel esm --copy-files --source-maps --extensions .js --out-dir cjs",
     "build:readme": "node scripts/createDocs.js",
     "build": "npm run build:index && npm run build:module && npm run build:readme",
+    "changelog": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "prepublishOnly": "npm run build && npm run changelog",
     "run-demo": "npx babel-node"
   },
   "dependencies": {
@@ -22,8 +24,27 @@
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
+    "conventional-changelog": "^3.1.18",
     "create-index": "^2.3.0",
     "dox": "^0.9.0",
     "rimraf": "^2.6.2"
-  }
+  },
+  "main": "cjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parksben/think-bayes.git"
+  },
+  "keywords": [
+    "think-bayes",
+    "probability",
+    "statistics",
+    "algorithm",
+    "library"
+  ],
+  "author": "parksben",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/parksben/think-bayes/issues"
+  },
+  "homepage": "https://github.com/parksben/think-bayes#readme"
 }
