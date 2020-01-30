@@ -21,7 +21,7 @@ yarn add think-bayes # OR npm i --save think-bayes
 Let us resolve [the cookie problem](https://www.oreilly.com/library/view/think-bayes/13333JSONBOOK/a0000000336.html) by using the class `Suite`:
 
 ```js
-const { Suite } = require('think-bayes');
+import { Suite } from 'think-bayes';
 
 class Cookie extends Suite {
   mixes = {
