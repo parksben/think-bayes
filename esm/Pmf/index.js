@@ -14,6 +14,7 @@ export default class Pmf extends DictWrapper {
    * Gets the probability associated with the value x.
    * @param {any} x number value
    * @param {number} probDefault value to return if the key is not there
+   * @returns probability
    */
   prob(x, probDefault = 0) {
     return this.d.get(x) || probDefault;
@@ -21,6 +22,8 @@ export default class Pmf extends DictWrapper {
 
   /**
    * Gets probabilities for a sequence of values.
+   * @param {array} xs a sequence of values
+   * @returns array of probabilities
    */
   probs(xs) {
     return xs.map(x => this.prob(x));
@@ -28,11 +31,18 @@ export default class Pmf extends DictWrapper {
 
   /**
    * Makes a cdf.
+   * @param {string} name the name for new cdf
+   * @returns one new cdf
    */
   makeCdf(name) {
     return makeCdfFromPmf(this, name);
   }
 
+  /**
+   * Calculate the probability while the value is greater than x.
+   * @param {number} x
+   * @returns probability
+   */
   probGreater(x) {
     const t = [...this.d]
       .filter(([val, prob]) => val > x)
@@ -40,6 +50,11 @@ export default class Pmf extends DictWrapper {
     return t.reduce((prev, curr) => math.add(prev, curr));
   }
 
+  /**
+   * Calculate the probability while the value is less than x.
+   * @param {number} x
+   * @returns probability
+   */
   probLess(x) {
     const t = [...this.d]
       .filter(([val, prob]) => val < x)
@@ -68,7 +83,7 @@ export default class Pmf extends DictWrapper {
 
   /**
    * Chooses a random element from this PMF.
-   * @returns float value from the Pmf
+   * @returns float value from the pmf
    */
   random() {
     if (this.d.size === 0) throw new ValueError('pmf contains no values.');
@@ -135,7 +150,7 @@ export default class Pmf extends DictWrapper {
 
   /**
    * Computes the Pmf of the sum of values drawn from self and other.
-   * @param {number or pmf} other another pmf or a number
+   * @param {number|pmf} other another pmf or a number
    * @returns new pmf
    */
   add(other) {
@@ -149,7 +164,7 @@ export default class Pmf extends DictWrapper {
   /**
    * Computes the Pmf of the sum of values drawn from self and other.
    * @param {pmf} other another pmf
-   * @returns new Pmf
+   * @returns new pmf
    */
   addPmf(other) {
     const pmf = new Pmf();
@@ -164,7 +179,7 @@ export default class Pmf extends DictWrapper {
   /**
    * Computes the Pmf of the sum a constant and  values from self.
    * @param {number} other a number
-   * @returns new Pmf
+   * @returns new pmf
    */
   addConstant(other) {
     const pmf = new Pmf();
@@ -176,8 +191,8 @@ export default class Pmf extends DictWrapper {
 
   /**
    * Computes the Pmf of the diff of values drawn from self and other.
-   * @param {pmf} other another Pmf
-   * @returns new Pmf
+   * @param {pmf} other another pmf
+   * @returns new pmf
    */
   sub(other) {
     const pmf = new Pmf();
@@ -192,7 +207,7 @@ export default class Pmf extends DictWrapper {
   /**
    * Computes the CDF of the maximum of k selections from this dist.
    * @param {number} k int
-   * @returns new Cdf
+   * @returns new cdf
    */
   max(k) {
     const cdf = this.makeCdf();

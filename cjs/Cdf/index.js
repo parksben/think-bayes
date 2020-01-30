@@ -88,7 +88,8 @@ function (_DictWrapper) {
   }
   /**
    * Represents a cumulative distribution function.
-   * @param {string} name string name for the new Cdf
+   * @param {string} name string name for the new cdf
+   * @returns new cdf
    */
 
 
@@ -99,6 +100,8 @@ function (_DictWrapper) {
     }
     /**
      * Makes a Pmf.
+     * @param {string} name string name for the new pmf
+     * @returns new pmf
      */
 
   }, {
@@ -108,6 +111,7 @@ function (_DictWrapper) {
     }
     /**
      * Returns a sorted list of values.
+     * @returns array of values
      */
 
   }, {
@@ -116,7 +120,8 @@ function (_DictWrapper) {
       return this.xs;
     }
     /**
-     * Returns a sorted sequence of (value, probability) pairs.
+     * Returns a sorted sequence of [value, probability] pairs.
+     * @returns array of [value, probability] pairs
      */
 
   }, {
@@ -133,6 +138,8 @@ function (_DictWrapper) {
      * Note: this us normally used to build a CDF from scratch, not
      * to modify existing CDFs.  It is up to the caller to make sure
      * that the result is a legal CDF.
+     * @param {any} x number value or case name
+     * @param {number} p number freq or prob
      */
 
   }, {
@@ -144,6 +151,7 @@ function (_DictWrapper) {
     /**
      * Adds a term to the xs.
      * @param {number} term how much to add
+     * @returns another cdf
      */
 
   }, {
@@ -158,6 +166,7 @@ function (_DictWrapper) {
     /**
      * Multiplies the xs by a factor.
      * @param {*} factor what to multiply by
+     * @returns another cdf
      */
 
   }, {
@@ -218,6 +227,7 @@ function (_DictWrapper) {
     }
     /**
      * Chooses a random value from this distribution.
+     * @returns number value
      */
 
   }, {
@@ -228,6 +238,7 @@ function (_DictWrapper) {
     /**
      * Generates a random sample from this distribution.
      * @param {number} n int length of the sample
+     * @returns array of random values
      */
 
   }, {
@@ -321,6 +332,7 @@ function (_DictWrapper) {
     /**
      * Generates a sequence of points suitable for plotting.
      * An empirical CDF is a step function; linear interpolation can be misleading.
+     * @returns array of points
      */
 
   }, {

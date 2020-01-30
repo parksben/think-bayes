@@ -5,7 +5,8 @@
   "scripts": {
     "build:index": "npx rimraf esm/index.js && npx create-index --ignoreUnsafe esm",
     "build:module": "npx rimraf cjs && npx babel esm --copy-files --source-maps --extensions .js --out-dir cjs",
-    "build": "npm run build:index && npm run build:module",
+    "build:readme": "node scripts/createDocs.js",
+    "build": "npm run build:index && npm run build:module && npm run build:readme",
     "run-demo": "npx babel-node"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
     "create-index": "^2.3.0",
+    "dox": "^0.9.0",
     "rimraf": "^2.6.2"
   }
 }

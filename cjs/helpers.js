@@ -59,8 +59,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /**
  * Computes odds for a given probability.
- * Example: p=0.75 means 75 for and 25 against, or 3:1 odds in favor.
- * Note: when p=1, the formula for odds divides by zero, which is
+ * **Example:** p=0.75 means 75 for and 25 against, or 3:1 odds in favor.
+ * **Note:** when p=1, the formula for odds divides by zero, which is
  * normally undefined.  But I think it is reasonable to define Odds(1)
  * to be infinity, so that's what this function does.
  * @param {number} p float 0~1
@@ -72,7 +72,7 @@ var odds = function odds(p) {
 };
 /**
  * Computes the probability corresponding to given odds.
- * Example: o=2 means 2:1 odds in favor, or 2/3 probability
+ * **Example:** o=2 means 2:1 odds in favor, or 2/3 probability
  * @param {number} o float odds, strictly positive
  * @returns float probability
  */
@@ -86,7 +86,7 @@ var probability = function probability(o) {
 };
 /**
  * Computes the probability corresponding to given odds.
- * Example: yes=2, no=1 means 2:1 odds in favor, or 2/3 probability.
+ * **Example:** yes=2, no=1 means 2:1 odds in favor, or 2/3 probability.
  * @param {number} yes int or float odds in favor
  * @param {number} no int or float odds in favor
  */

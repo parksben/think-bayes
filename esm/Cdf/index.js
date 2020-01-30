@@ -20,7 +20,8 @@ export default class Cdf extends DictWrapper {
 
   /**
    * Represents a cumulative distribution function.
-   * @param {string} name string name for the new Cdf
+   * @param {string} name string name for the new cdf
+   * @returns new cdf
    */
   copy(name) {
     return new Cdf(this.xs, this.ps, name || this.name);
@@ -28,6 +29,8 @@ export default class Cdf extends DictWrapper {
 
   /**
    * Makes a Pmf.
+   * @param {string} name string name for the new pmf
+   * @returns new pmf
    */
   makePmf(name) {
     return makePmfFromCdf(this, name);
@@ -35,13 +38,15 @@ export default class Cdf extends DictWrapper {
 
   /**
    * Returns a sorted list of values.
+   * @returns array of values
    */
   values() {
     return this.xs;
   }
 
   /**
-   * Returns a sorted sequence of (value, probability) pairs.
+   * Returns a sorted sequence of [value, probability] pairs.
+   * @returns array of [value, probability] pairs
    */
   items() {
     return this.xs.map((x, i) => [x, this.ps[i]]);
@@ -52,6 +57,8 @@ export default class Cdf extends DictWrapper {
    * Note: this us normally used to build a CDF from scratch, not
    * to modify existing CDFs.  It is up to the caller to make sure
    * that the result is a legal CDF.
+   * @param {any} x number value or case name
+   * @param {number} p number freq or prob
    */
   append(x, p) {
     this.xs.push(x);
@@ -61,6 +68,7 @@ export default class Cdf extends DictWrapper {
   /**
    * Adds a term to the xs.
    * @param {number} term how much to add
+   * @returns another cdf
    */
   shift(term) {
     const another = this.copy();
@@ -71,6 +79,7 @@ export default class Cdf extends DictWrapper {
   /**
    * Multiplies the xs by a factor.
    * @param {*} factor what to multiply by
+   * @returns another cdf
    */
   scale(factor) {
     const another = this.copy();
@@ -119,6 +128,7 @@ export default class Cdf extends DictWrapper {
 
   /**
    * Chooses a random value from this distribution.
+   * @returns number value
    */
   random() {
     return this.value(Math.random());
@@ -127,6 +137,7 @@ export default class Cdf extends DictWrapper {
   /**
    * Generates a random sample from this distribution.
    * @param {number} n int length of the sample
+   * @returns array of random values
    */
   sample(n) {
     return new Array(n).fill(0).map(() => this.random());
@@ -179,6 +190,7 @@ export default class Cdf extends DictWrapper {
   /**
    * Generates a sequence of points suitable for plotting.
    * An empirical CDF is a step function; linear interpolation can be misleading.
+   * @returns array of points
    */
   render() {
     const xs = [this.xs[0]];

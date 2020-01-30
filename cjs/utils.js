@@ -162,7 +162,9 @@ var printTable = function printTable(_ref) {
       _ref$frameH = _ref.frameH,
       frameH = _ref$frameH === void 0 ? '-' : _ref$frameH,
       _ref$frameV = _ref.frameV,
-      frameV = _ref$frameV === void 0 ? '|' : _ref$frameV;
+      frameV = _ref$frameV === void 0 ? '|' : _ref$frameV,
+      _ref$mode = _ref.mode,
+      mode = _ref$mode === void 0 ? 'print' : _ref$mode;
   var colWidth = {};
 
   var calColumnWidth = function calColumnWidth(cn) {
@@ -185,7 +187,7 @@ var printTable = function printTable(_ref) {
     return "".concat(line).concat(frameV, "\n");
   });
   var printStr = "\n".concat(lines.join(''), "\n");
-  logging.print(printStr);
+  return mode === 'print' ? logging.print(printStr) : printStr;
 };
 
 exports.printTable = printTable;

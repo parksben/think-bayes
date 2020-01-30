@@ -42,16 +42,19 @@ function () {
     key: "density",
 
     /**
-     * Evaluates this Pdf at x.
+     * Evaluates this pdf at x.
+     * This method needs implement by children class
+     * if not there is an `UnimplementedMethodException` would be throw
+     * @param {number} x number
      * @returns float probability density
      */
     value: function density(x) {
       throw new _utils.UnimplementedMethodException();
     }
     /**
-     * Makes a discrete version of this Pdf, evaluated at xs.
-     * @param {*} xs equally-spaced sequence of values
-     * @returns new Pmf
+     * Makes a discrete version of this pdf, evaluated at xs.
+     * @param {string|array|object} xs equally-spaced sequence of values
+     * @returns new pmf
      */
 
   }, {

@@ -38,7 +38,7 @@ export default class Suite extends Pmf {
    * This is more efficient than calling Update repeatedly because
    * it waits until the end to Normalize.
    * Modifies the suite directly; if you want to keep the original, make a copy.
-   * @param {array/set} dataset a sequence of data
+   * @param {array|set} dataset a sequence of data
    * @returns the normalizing constant
    */
   updateSet(dataset) {
@@ -54,7 +54,7 @@ export default class Suite extends Pmf {
   /**
    * Updates each hypothesis based on the dataset.
    * Modifies the suite directly; if you want to keep the original, make a copy.
-   * @param {array/set} dataset a sequence of data
+   * @param {array|set} dataset a sequence of data
    */
   logUpdateSet(dataset) {
     for (let data of dataset) {
@@ -64,8 +64,11 @@ export default class Suite extends Pmf {
 
   /**
    * Computes the likelihood of the data under the hypothesis.
+   * This method needs implement by children class
+   * if not there is an `UnimplementedMethodException` would be throw
    * @param {any} data some representation of the data
    * @param {any} hypo some representation of the hypothesis
+   * @returns likelihood
    */
   likelihood(data, hypo) {
     throw new UnimplementedMethodException();
@@ -73,8 +76,11 @@ export default class Suite extends Pmf {
 
   /**
    * Computes the log likelihood of the data under the hypothesis.
+   * This method needs implement by children class
+   * if not there is an `UnimplementedMethodException` would be throw
    * @param {any} data some representation of the data
    * @param {any} hypo some representation of the hypothesis
+   * @returns likelihood
    */
   logLikelihood(data, hypo) {
     throw new UnimplementedMethodException();

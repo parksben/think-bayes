@@ -57,6 +57,7 @@ export const printTable = ({
   minColWidth = 5,
   frameH = '-',
   frameV = '|',
+  mode = 'print',
 }) => {
   const colWidth = {};
   const calColumnWidth = cn => {
@@ -90,5 +91,5 @@ export const printTable = ({
   });
 
   const printStr = `\n${lines.join('')}\n`;
-  logging.print(printStr);
+  return mode === 'print' ? logging.print(printStr) : printStr;
 };

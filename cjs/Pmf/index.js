@@ -99,6 +99,7 @@ function (_DictWrapper) {
      * Gets the probability associated with the value x.
      * @param {any} x number value
      * @param {number} probDefault value to return if the key is not there
+     * @returns probability
      */
     value: function prob(x) {
       var probDefault = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
@@ -106,6 +107,8 @@ function (_DictWrapper) {
     }
     /**
      * Gets probabilities for a sequence of values.
+     * @param {array} xs a sequence of values
+     * @returns array of probabilities
      */
 
   }, {
@@ -119,6 +122,8 @@ function (_DictWrapper) {
     }
     /**
      * Makes a cdf.
+     * @param {string} name the name for new cdf
+     * @returns one new cdf
      */
 
   }, {
@@ -126,6 +131,12 @@ function (_DictWrapper) {
     value: function makeCdf(name) {
       return (0, _convertors.makeCdfFromPmf)(this, name);
     }
+    /**
+     * Calculate the probability while the value is greater than x.
+     * @param {number} x
+     * @returns probability
+     */
+
   }, {
     key: "probGreater",
     value: function probGreater(x) {
@@ -147,6 +158,12 @@ function (_DictWrapper) {
         return _math.default.add(prev, curr);
       });
     }
+    /**
+     * Calculate the probability while the value is less than x.
+     * @param {number} x
+     * @returns probability
+     */
+
   }, {
     key: "probLess",
     value: function probLess(x) {
@@ -212,7 +229,7 @@ function (_DictWrapper) {
     }
     /**
      * Chooses a random element from this PMF.
-     * @returns float value from the Pmf
+     * @returns float value from the pmf
      */
 
   }, {
@@ -368,7 +385,7 @@ function (_DictWrapper) {
     }
     /**
      * Computes the Pmf of the sum of values drawn from self and other.
-     * @param {number or pmf} other another pmf or a number
+     * @param {number|pmf} other another pmf or a number
      * @returns new pmf
      */
 
@@ -384,7 +401,7 @@ function (_DictWrapper) {
     /**
      * Computes the Pmf of the sum of values drawn from self and other.
      * @param {pmf} other another pmf
-     * @returns new Pmf
+     * @returns new pmf
      */
 
   }, {
@@ -448,7 +465,7 @@ function (_DictWrapper) {
     /**
      * Computes the Pmf of the sum a constant and  values from self.
      * @param {number} other a number
-     * @returns new Pmf
+     * @returns new pmf
      */
 
   }, {
@@ -486,8 +503,8 @@ function (_DictWrapper) {
     }
     /**
      * Computes the Pmf of the diff of values drawn from self and other.
-     * @param {pmf} other another Pmf
-     * @returns new Pmf
+     * @param {pmf} other another pmf
+     * @returns new pmf
      */
 
   }, {
@@ -551,7 +568,7 @@ function (_DictWrapper) {
     /**
      * Computes the CDF of the maximum of k selections from this dist.
      * @param {number} k int
-     * @returns new Cdf
+     * @returns new cdf
      */
 
   }, {
