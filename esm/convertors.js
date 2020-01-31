@@ -157,7 +157,7 @@ export const makeCdfFromItems = (items, name = '') => {
   const cs = [];
   const sortedItems = items.sort(([a], [b]) => math.compare(a, b));
 
-  for (let [val, count] of sortedItems) {
+  for (let [value, count] of sortedItems) {
     runSum = math.add(runSum, count);
     xs.push(value);
     cs.push(runSum);

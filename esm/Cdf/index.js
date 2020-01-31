@@ -122,7 +122,7 @@ export default class Cdf extends DictWrapper {
    * @returns number value
    */
   percentile(p) {
-    return this.value(math.div(p / 100));
+    return this.value(math.div(p, 100));
   }
 
   /**

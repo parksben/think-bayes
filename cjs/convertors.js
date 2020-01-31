@@ -412,7 +412,7 @@ var makeCdfFromItems = function makeCdfFromItems(items) {
   try {
     for (var _iterator8 = sortedItems[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
       var _step8$value = _slicedToArray(_step8.value, 2),
-          val = _step8$value[0],
+          value = _step8$value[0],
           count = _step8$value[1];
 
       runSum = _math.default.add(runSum, count);

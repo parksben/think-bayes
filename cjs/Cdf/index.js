@@ -229,7 +229,7 @@ function (_DictWrapper) {
   }, {
     key: "percentile",
     value: function percentile(p) {
-      return this.value(_math.default.div(p / 100));
+      return this.value(_math.default.div(p, 100));
     }
     /**
      * Chooses a random value from this distribution.
