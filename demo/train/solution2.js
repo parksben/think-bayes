@@ -28,7 +28,7 @@ suite.print();
 // Mean
 console.log(`MEAN: ${Math.round(suite.mean())}\n`);
 
-// Confidence interval for percentage interval is [5, 95]
+// Confidence interval when percentage interval is [5, 95]
 const { percentile } = Util;
 const confidenceInterval = [5, 95].map(x => percentile(suite, x));
 console.log(`CI: [${confidenceInterval.join(', ')}]\n`);
